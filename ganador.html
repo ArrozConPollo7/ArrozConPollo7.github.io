@@ -58,36 +58,6 @@
       Muchas gracias a todos por participar y colaborarme 🙏
     </div>
   </div>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCmfnmwARjEAwIO0AL1ARHW8JVelcR8ZWc",
-      authDomain: "rifa-pro-fondos.firebaseapp.com",
-      projectId: "rifa-pro-fondos",
-      storageBucket: "rifa-pro-fondos.firebasestorage.app",
-      messagingSenderId: "902059536686",
-      appId: "1:902059536686:web:be80e12bcb5aa8f4158abf"
-    };
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    async function mostrarGanador() {
-      const ganadorDoc = await getDoc(doc(db, "config", "ganador"));
-      const nombreGanadorDiv = document.getElementById("nombreGanador");
-      if (ganadorDoc.exists()) {
-        const numero = ganadorDoc.data().numero;
-        if (numero !== undefined && numero !== null && numero !== "") {
-          nombreGanadorDiv.textContent = `#${numero}`;
-        } else {
-          nombreGanadorDiv.textContent = "Aún no se ha seleccionado ganador.";
-        }
-      } else {
-        nombreGanadorDiv.textContent = "Aún no se ha seleccionado ganador.";
-      }
-    }
-    mostrarGanador();
-  </script>
+ 
 </body>
 </html>
