@@ -300,15 +300,14 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebas
     for (let i = 0; i < totalNumeros; i++) {
       const numRef = doc(db, "numeros", i.toString());
       const docSnap = await getDoc(numRef);
+      let estado = "disponible";
       if (docSnap.exists()) {
-        const estado = docSnap.data().estado;
-        if (estado === "vendido" || estado === "pendiente") {
-          const option = document.createElement("option");
-          option.value = i;
-          option.textContent = `#${i} (${estado})`;
-          selectorGanador.appendChild(option);
-        }
+        estado = docSnap.data().estado || "disponible";
       }
+      const option = document.createElement("option");
+      option.value = i;
+      option.textContent = `#${i} (${estado})`;
+      selectorGanador.appendChild(option);
     }
   }
   llenarSelectorGanador();
