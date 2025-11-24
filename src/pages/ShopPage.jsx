@@ -1,65 +1,174 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { products } from '../components/ProductGrid';
+import { products } from '../data/products';
 import ProductCard from '../components/ProductCard';
 import { useLanguage } from '../context/LanguageContext';
+import { Filter, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ShopPage = () => {
-    const [searchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const categoryFilter = searchParams.get('category');
     const [filteredProducts, setFilteredProducts] = useState(products);
+    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const { t } = useLanguage();
 
+    // Filter Logic
     useEffect(() => {
         if (categoryFilter) {
-            const categoryMap = {
-                'tees': 'T-Shirts',
-                'hoodies': 'Hoodies',
-                'bottoms': 'Bottoms',
-                'outerwear': 'Outerwear'
-            };
-            const mappedCategory = categoryMap[categoryFilter];
-            if (mappedCategory) {
-                setFilteredProducts(products.filter(p => p.category === mappedCategory));
-            } else {
-                setFilteredProducts(products);
-            }
+            setFilteredProducts(products.filter(p => p.category.slug === categoryFilter));
         } else {
             setFilteredProducts(products);
         }
     }, [categoryFilter]);
 
+    const categories = [
+        { name: 'All', slug: null },
+        { name: 'T-Shirts', slug: 'tees' },
+        { name: 'Hoodies', slug: 'hoodies' },
+        { name: 'Bottoms', slug: 'bottoms' },
+        { name: 'Outerwear', slug: 'outerwear' }
+    ];
+
     return (
-        <div className="container" style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
-            <h1 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '3rem',
-                marginBottom: '40px',
-                textTransform: 'uppercase'
-            }}>
-                {categoryFilter ? categoryFilter.toUpperCase() : t.nav.shop}
-            </h1>
+        <div className="container" style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh', display: 'flex', gap: '40px' }}>
 
-            {/* Filters (Simple) */}
-            <div style={{ marginBottom: '40px', display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                <Link to="/shop" style={{ color: !categoryFilter ? 'var(--color-accent)' : 'white' }}>All</Link>
-                <Link to="/shop?category=tees" style={{ color: categoryFilter === 'tees' ? 'var(--color-accent)' : 'white' }}>T-Shirts</Link>
-                <Link to="/shop?category=hoodies" style={{ color: categoryFilter === 'hoodies' ? 'var(--color-accent)' : 'white' }}>Hoodies</Link>
-                <Link to="/shop?category=bottoms" style={{ color: categoryFilter === 'bottoms' ? 'var(--color-accent)' : 'white' }}>Bottoms</Link>
-                <Link to="/shop?category=outerwear" style={{ color: categoryFilter === 'outerwear' ? 'var(--color-accent)' : 'white' }}>Outerwear</Link>
+            {/* Sidebar (Desktop) */}
+            <aside className="shop-sidebar" style={{ width: '250px', flexShrink: 0 }}>
+                <div style={{ position: 'sticky', top: '120px' }}>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '20px', textTransform: 'uppercase' }}>Filters</h3>
+
+                    <div style={{ marginBottom: '30px' }}>
+                        <h4 style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#888', marginBottom: '15px' }}>Category</h4>
+                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                            {categories.map(cat => (
+                                <li key={cat.name} style={{ marginBottom: '10px' }}>
+                                    <button
+                                        onClick={() => setSearchParams(cat.slug ? { category: cat.slug } : {})}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: categoryFilter === cat.slug ? 'var(--color-accent)' : 'var(--color-text)',
+                                            cursor: 'pointer',
+                                            fontSize: '1rem',
+                                            fontFamily: 'var(--font-main)',
+                                            textAlign: 'left',
+                                            padding: 0,
+                                            transition: 'color 0.2s'
+                                        }}
+                                    >
+                                        {cat.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div style={{ marginBottom: '30px' }}>
+                        <h4 style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#888', marginBottom: '15px' }}>Price</h4>
+                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                            <input type="number" placeholder="Min" style={{ width: '80px', background: '#111', border: '1px solid #333', color: 'white', padding: '5px' }} />
+                            <span>-</span>
+                            <input type="number" placeholder="Max" style={{ width: '80px', background: '#111', border: '1px solid #333', color: 'white', padding: '5px' }} />
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            {/* Mobile Filter Toggle */}
+            <div className="mobile-filter-toggle" style={{ display: 'none', marginBottom: '20px', width: '100%' }}>
+                <button
+                    onClick={() => setMobileFiltersOpen(true)}
+                    style={{
+                        width: '100%',
+                        padding: '10px',
+                        background: '#111',
+                        border: '1px solid #333',
+                        color: 'white',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '10px',
+                        textTransform: 'uppercase',
+                        fontFamily: 'var(--font-display)'
+                    }}
+                >
+                    <Filter size={16} /> Filters
+                </button>
             </div>
 
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-                gap: '40px 20px'
-            }}>
-                {filteredProducts.map(product => (
-                    <Link key={product.id} to={`/product/${product.id}`}>
-                        <ProductCard product={product} />
-                    </Link>
-                ))}
-            </div>
+            {/* Product Grid */}
+            <main style={{ flexGrow: 1 }}>
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                    gap: '40px 20px'
+                }}>
+                    {filteredProducts.map(product => (
+                        <Link key={product.id} to={`/product/${product.id}`}>
+                            <ProductCard product={product} />
+                        </Link>
+                    ))}
+                </div>
+            </main>
+
+            {/* Mobile Sidebar Overlay */}
+            <AnimatePresence>
+                {mobileFiltersOpen && (
+                    <motion.div
+                        initial={{ x: '-100%' }}
+                        animate={{ x: 0 }}
+                        exit={{ x: '-100%' }}
+                        transition={{ type: 'tween' }}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            width: '80%',
+                            height: '100vh',
+                            background: '#050505',
+                            zIndex: 2000,
+                            padding: '20px',
+                            borderRight: '1px solid #333'
+                        }}
+                    >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
+                            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem' }}>FILTERS</h3>
+                            <X onClick={() => setMobileFiltersOpen(false)} />
+                        </div>
+                        {/* Mobile Filter Content (Duplicate logic for now) */}
+                        <ul style={{ listStyle: 'none', padding: 0 }}>
+                            {categories.map(cat => (
+                                <li key={cat.name} style={{ marginBottom: '15px' }}>
+                                    <button
+                                        onClick={() => {
+                                            setSearchParams(cat.slug ? { category: cat.slug } : {});
+                                            setMobileFiltersOpen(false);
+                                        }}
+                                        style={{
+                                            background: 'none',
+                                            border: 'none',
+                                            color: categoryFilter === cat.slug ? 'var(--color-accent)' : 'var(--color-text)',
+                                            fontSize: '1.2rem',
+                                            textTransform: 'uppercase'
+                                        }}
+                                    >
+                                        {cat.name}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <style>{`
+                @media (max-width: 768px) {
+                    .container { flex-direction: column !important; gap: 20px !important; }
+                    .shop-sidebar { display: none !important; }
+                    .mobile-filter-toggle { display: block !important; }
+                }
+            `}</style>
         </div>
     );
 };

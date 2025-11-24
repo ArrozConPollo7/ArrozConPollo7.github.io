@@ -118,27 +118,6 @@ const Navbar = () => {
             {/* Icons */}
             <div style={{ display: 'flex', gap: isMobile ? '15px' : '20px', alignItems: 'center' }}>
                 {/* Language Toggle */}
-                <button
-                    onClick={toggleLanguage}
-                    style={{
-                        background: 'rgba(255,255,255,0.1)',
-                        border: '1px solid rgba(255,255,255,0.2)',
-                        borderRadius: '20px',
-                        color: 'white',
-                        padding: '5px 12px',
-                        cursor: 'pointer',
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '0.8rem',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        transition: 'all 0.3s ease'
-                    }}
-                    className="lang-btn"
-                >
-                    <Globe size={14} /> {language.toUpperCase()}
-                </button>
-
                 {!isMobile && <Search size={24} style={{ cursor: 'pointer' }} />}
 
                 <Link to="/cart" style={{ position: 'relative', cursor: 'pointer', color: 'inherit' }}>

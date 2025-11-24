@@ -2,14 +2,21 @@
 
 :root {
     --color-bg: #050505;
-    --color-text: #ffffff;
+    /* Void Black */
+    --color-text: #f8f9fa;
+    /* Starlight White */
+    --color-text-muted: #888888;
+
     --color-accent: #0044ff;
     /* Electric Blue */
     --color-accent-secondary: #ccff00;
     /* Acid Green */
+    --color-accent-tertiary: #7b2cbf;
+    /* Nebula Purple */
+
     --color-accent-glow: rgba(0, 68, 255, 0.6);
     --color-gray: #1a1a1a;
-    --color-light-gray: #888888;
+    --color-light-gray: #333333;
 
     --font-main: 'Inter', sans-serif;
     --font-display: 'Oswald', sans-serif;

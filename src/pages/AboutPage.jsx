@@ -1,60 +1,137 @@
 import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
+import { motion } from 'framer-motion';
 
 const AboutPage = () => {
-    const { t } = useLanguage();
-
     return (
-        <div style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
-            <div className="container">
-                <h1 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(3rem, 8vw, 6rem)',
-                    textTransform: 'uppercase',
-                    textAlign: 'center',
-                    marginBottom: '60px',
-                    lineHeight: '0.9'
-                }}>
-                    BORN IN THE <br />
-                    <span style={{ color: 'var(--color-accent)' }}>DIGITAL VOID</span>
-                </h1>
+        <div style={{ minHeight: '100vh', background: 'var(--color-bg)', overflow: 'hidden' }}>
 
-                <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', marginBottom: '100px' }}>
-                    <p style={{ fontSize: '1.5rem', lineHeight: '1.6', color: '#ccc' }}>
-                        AKROSS is not just a brand; it's a movement. Born from the intersection of cyberpunk aesthetics and industrial utility, we craft gear for the modern urban explorer.
-                    </p>
+            {/* Kinetic Header */}
+            <section style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                <div style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.1, background: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }}></div>
+
+                <div className="container" style={{ textAlign: 'center', zIndex: 10 }}>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: 'clamp(3rem, 10vw, 8rem)',
+                            lineHeight: '0.9',
+                            textTransform: 'uppercase',
+                            marginBottom: '40px'
+                        }}
+                    >
+                        Nacido en el<br />
+                        <span style={{ color: 'var(--color-accent-tertiary)', textShadow: '0 0 30px rgba(123, 44, 191, 0.5)' }}>Vacío Digital</span>
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5, duration: 0.8 }}
+                        style={{
+                            fontSize: 'clamp(1rem, 2vw, 1.5rem)',
+                            maxWidth: '800px',
+                            margin: '0 auto',
+                            color: '#aaa',
+                            lineHeight: '1.6'
+                        }}
+                    >
+                        No somos solo una marca de ropa. Somos una señal en el ruido.
+                        Creando equipo para el explorador urbano moderno que navega la intersección entre realidades físicas y digitales.
+                    </motion.p>
                 </div>
+            </section>
 
+            {/* Manifesto / Timeline */}
+            <section className="container" style={{ paddingBottom: '150px' }}>
                 <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '40px',
-                    marginBottom: '100px'
+                    borderLeft: '1px solid #333',
+                    paddingLeft: '40px',
+                    marginLeft: '20px',
+                    position: 'relative'
                 }}>
-                    <div style={{ background: '#111', padding: '40px' }}>
-                        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', marginBottom: '20px', color: 'var(--color-accent-secondary)' }}>THE MISSION</h3>
-                        <p style={{ color: '#888', lineHeight: '1.6' }}>
-                            To equip the digital generation with apparel that transcends boundaries. We believe in clothing that adapts to your environment, whether you're navigating the concrete jungle or the metaverse.
+                    <div className="timeline-item" style={{ marginBottom: '100px' }}>
+                        <span style={{
+                            color: 'var(--color-accent)',
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '1.2rem'
+                        }}>2024</span>
+                        <h2 style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '3rem',
+                            textTransform: 'uppercase',
+                            margin: '10px 0 20px'
+                        }}>El Despertar</h2>
+                        <p style={{ color: '#888', maxWidth: '600px', lineHeight: '1.6' }}>
+                            Andromeda Street emerge de la escena underground. Un colectivo de diseñadores y artistas digitales unidos por una visión: redefinir el streetwear para el futuro.
                         </p>
                     </div>
-                    <div style={{ background: '#111', padding: '40px' }}>
-                        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', marginBottom: '20px', color: 'var(--color-accent-secondary)' }}>THE VISION</h3>
-                        <p style={{ color: '#888', lineHeight: '1.6' }}>
-                            A world where fashion meets function without compromise. We are constantly experimenting with new materials, cuts, and digital integrations to push the boundaries of streetwear.
-                        </p>
-                    </div>
-                </div>
 
-                <div style={{ textAlign: 'center' }}>
-                    <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '3rem', marginBottom: '40px' }}>JOIN THE RESISTANCE</h2>
-                    <p style={{ color: '#888', marginBottom: '40px' }}>Follow us on social media for the latest drops and exclusive content.</p>
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-                        <a href="#" className="btn">Instagram</a>
-                        <a href="#" className="btn">Twitter</a>
-                        <a href="#" className="btn">Discord</a>
+                    <div className="timeline-item" style={{ marginBottom: '100px' }}>
+                        <span style={{
+                            color: 'var(--color-accent-secondary)',
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '1.2rem'
+                        }}>2025</span>
+                        <h2 style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '3rem',
+                            textTransform: 'uppercase',
+                            margin: '10px 0 20px'
+                        }}>Expansión</h2>
+                        <p style={{ color: '#888', maxWidth: '600px', lineHeight: '1.6' }}>
+                            Lanzamiento de la colección "Nebula One". Envíos globales habilitados. La comunidad crece más allá de las fronteras, conectando nodos en todo el planeta.
+                        </p>
+                    </div>
+
+                    <div className="timeline-item">
+                        <span style={{
+                            color: 'var(--color-accent-tertiary)',
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '1.2rem'
+                        }}>FUTURO</span>
+                        <h2 style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '3rem',
+                            textTransform: 'uppercase',
+                            margin: '10px 0 20px'
+                        }}>Ascensión</h2>
+                        <p style={{ color: '#888', maxWidth: '600px', lineHeight: '1.6' }}>
+                            Integración de wearables AR y activos digitales. La línea entre IRL y URL continúa difuminándose. Estamos listos. ¿Y tú?
+                        </p>
                     </div>
                 </div>
-            </div>
+            </section>
+
+            {/* Community CTA */}
+            <section style={{
+                background: '#111',
+                padding: '100px 20px',
+                textAlign: 'center'
+            }}>
+                <div className="container">
+                    <h2 style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'clamp(2rem, 5vw, 4rem)',
+                        textTransform: 'uppercase',
+                        marginBottom: '40px'
+                    }}>Únete a la Resistencia</h2>
+
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
+                        {['Instagram', 'Discord', 'Twitter'].map(social => (
+                            <a key={social} href="#" className="btn" style={{
+                                minWidth: '150px',
+                                background: 'transparent',
+                                border: '1px solid #333'
+                            }}>
+                                {social}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            </section>
         </div>
     );
 };

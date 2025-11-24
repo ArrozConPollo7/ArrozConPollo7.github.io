@@ -1,90 +1,116 @@
 import React from 'react';
 import { ShoppingBag } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
 
 const ProductCard = ({ product }) => {
+    const { addToCart } = useCart();
     const { t } = useLanguage();
+
+    // Helper to safely get price
+    const price = product.pricing?.priceRange?.start?.gross?.amount || 0;
+    // Helper to safely get image
+    const image = product.thumbnail?.url || '';
+    // Helper to safely get category name
+    const category = product.category?.name || '';
+
+    const handleAddToCart = (e) => {
+        e.preventDefault();
+        // Default to first variant if available, or generic
+        const size = product.variants?.[0]?.name || 'M';
+        addToCart({ ...product, price, image }, size);
+    };
 
     return (
         <div className="product-card" style={{
             position: 'relative',
-            cursor: 'pointer',
             group: 'card'
         }}>
-            {/* Image Container */}
             <div style={{
                 position: 'relative',
-                width: '100%',
-                paddingBottom: '125%', // 4:5 Aspect Ratio
                 overflow: 'hidden',
+                borderRadius: '4px',
                 marginBottom: '15px',
-                backgroundColor: '#111'
+                aspectRatio: '3/4'
             }}>
                 <img
-                    src={product.image}
-                    alt={t.productNames[product.id]}
+                    src={image}
+                    alt={product.name}
                     style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
                         width: '100%',
                         height: '100%',
                         objectFit: 'cover',
                         transition: 'transform 0.5s ease'
                     }}
-                    onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-                    onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                    className="product-image"
                 />
 
-                {/* Quick Add Button */}
-                <div style={{
+                {/* Hover Overlay */}
+                <div className="product-overlay" style={{
                     position: 'absolute',
-                    bottom: '15px',
-                    right: '15px',
-                    backgroundColor: 'var(--color-accent)',
-                    padding: '10px',
-                    borderRadius: '50%',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'rgba(0,0,0,0.4)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     opacity: 0,
-                    transform: 'translateY(10px)',
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 0 15px var(--color-accent-glow)'
-                }}
-                    className="quick-add"
-                >
-                    <ShoppingBag size={20} color="white" />
+                    transition: 'opacity 0.3s ease'
+                }}>
+                    <button
+                        onClick={handleAddToCart}
+                        style={{
+                            background: 'var(--color-accent-secondary)',
+                            color: 'black',
+                            border: 'none',
+                            padding: '12px 24px',
+                            borderRadius: '2px',
+                            cursor: 'pointer',
+                            fontWeight: 'bold',
+                            textTransform: 'uppercase',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            fontFamily: 'var(--font-display)',
+                            letterSpacing: '1px'
+                        }}
+                    >
+                        <ShoppingBag size={18} /> {t.products.addToCart}
+                    </button>
                 </div>
             </div>
 
-            {/* Info */}
-            <div style={{ textAlign: 'left' }}>
+            <div>
                 <h3 style={{
                     fontFamily: 'var(--font-display)',
                     fontSize: '1.2rem',
                     textTransform: 'uppercase',
                     marginBottom: '5px',
                     color: 'var(--color-text)'
-                }}>{t.productNames[product.id]}</h3>
-                <p style={{
-                    fontFamily: 'var(--font-main)',
-                    color: 'var(--color-light-gray)',
-                    fontSize: '0.9rem',
-                    marginBottom: '8px'
-                }}>{t.categories[product.category]}</p>
-                <p style={{
-                    fontFamily: 'var(--font-main)',
-                    fontWeight: 'bold',
-                    color: 'var(--color-accent)',
-                    fontSize: '1.1rem'
-                }}>$ {product.price.toLocaleString('es-CO')}</p>
+                }}>{product.name}</h3>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <p style={{
+                        color: '#888',
+                        fontSize: '0.9rem'
+                    }}>{category}</p>
+                    <p style={{
+                        fontFamily: 'var(--font-main)',
+                        fontWeight: 'bold',
+                        color: 'var(--color-accent)',
+                        fontSize: '1.1rem'
+                    }}>$ {price.toLocaleString('es-CO')}</p>
+                </div>
             </div>
 
             <style>{`
-        .product-card:hover .quick-add {
+        .product-card:hover .product-image {
+          transform: scale(1.05);
+        }
+        .product-card:hover .product-overlay {
           opacity: 1;
-          transform: translateY(0);
         }
       `}</style>
         </div>

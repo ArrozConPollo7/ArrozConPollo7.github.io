@@ -1,44 +1,43 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
-const Marquee = ({ text }) => {
+const Marquee = () => {
+    const { t } = useLanguage();
+
+    // Duplicate text to create seamless loop
+    const marqueeText = `${t.marquee} ${t.marquee} ${t.marquee} ${t.marquee}`;
+
     return (
         <div style={{
-            width: '100%',
-            overflow: 'hidden',
             background: 'var(--color-accent)',
+            color: 'white',
             padding: '15px 0',
+            overflow: 'hidden',
             whiteSpace: 'nowrap',
             position: 'relative',
-            display: 'flex'
+            zIndex: 20,
+            borderTop: '1px solid rgba(255,255,255,0.1)',
+            borderBottom: '1px solid rgba(255,255,255,0.1)'
         }}>
-            <div className="marquee-content" style={{
-                display: 'inline-block',
-                animation: 'marquee 20s linear infinite',
-                paddingLeft: '100%'
-            }}>
-                {[...Array(4)].map((_, i) => (
-                    <span key={i} style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '1.5rem',
-                        fontWeight: 'bold',
-                        textTransform: 'uppercase',
-                        color: '#ffffff',
-                        marginRight: '50px'
-                    }}>
-                        {text}
-                    </span>
-                ))}
-            </div>
-            <style>{`
-        @keyframes marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-100%); }
-        }
-        .marquee-content {
-            display: flex; /* Ensure items are in a row */
-            animation: marquee 30s linear infinite;
-        }
-      `}</style>
+            <motion.div
+                animate={{ x: [0, -1000] }}
+                transition={{
+                    repeat: Infinity,
+                    ease: "linear",
+                    duration: 20
+                }}
+                style={{
+                    display: 'inline-block',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '1.2rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '2px',
+                    fontWeight: 'bold'
+                }}
+            >
+                {marqueeText}
+            </motion.div>
         </div>
     );
 };

@@ -3,9 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Marquee from './components/Marquee';
-import ProductGrid from './components/ProductGrid';
 import Footer from './components/Footer';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
@@ -13,14 +10,7 @@ import ShopPage from './pages/ShopPage';
 import CollectionsPage from './pages/CollectionsPage';
 import AboutPage from './pages/AboutPage';
 
-// Home Component to keep App clean
-const Home = () => (
-  <>
-    <Hero />
-    <Marquee text="NEW COLLECTION DROP — LIMITED EDITION — WORLDWIDE SHIPPING — " />
-    <ProductGrid />
-  </>
-);
+import Home from './pages/Home';
 
 function App() {
   return (

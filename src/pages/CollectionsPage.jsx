@@ -1,78 +1,174 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
-const collections = [
-    {
-        id: 'neon-nights',
-        title: 'NEON NIGHTS',
-        image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop',
-        description: 'Vibrant colors for the dark city.'
-    },
-    {
-        id: 'cyber-core',
-        title: 'CYBER CORE',
-        image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1000&auto=format&fit=crop',
-        description: 'Tech-wear essentials for the digital age.'
-    },
-    {
-        id: 'industrial',
-        title: 'INDUSTRIAL',
-        image: 'https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop',
-        description: 'Rugged functionality meets street style.'
-    }
-];
+const LookbookItem = ({ image, title, description, align, delay }) => (
+    <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay }}
+        style={{
+            display: 'flex',
+            flexDirection: align === 'left' ? 'row' : 'row-reverse',
+            gap: '60px',
+            alignItems: 'center',
+            marginBottom: '150px',
+            flexWrap: 'wrap'
+        }}
+    >
+        <div style={{ flex: '1 1 400px', position: 'relative' }}>
+            <div style={{
+                position: 'relative',
+                overflow: 'hidden',
+                height: '600px',
+                borderRadius: '2px'
+            }}>
+                <img
+                    src={image}
+                    alt={title}
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        filter: 'grayscale(20%) contrast(1.1)'
+                    }}
+                />
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'rgba(0,0,0,0.2)'
+                }}></div>
+            </div>
+            {/* Decorative Element */}
+            <div style={{
+                position: 'absolute',
+                bottom: '-20px',
+                [align === 'left' ? 'right' : 'left']: '-20px',
+                width: '150px',
+                height: '150px',
+                border: '1px solid var(--color-accent)',
+                zIndex: -1
+            }}></div>
+        </div>
+
+        <div style={{ flex: '1 1 300px', textAlign: align === 'left' ? 'left' : 'right' }}>
+            <h2 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(3rem, 5vw, 5rem)',
+                lineHeight: '0.9',
+                marginBottom: '30px',
+                textTransform: 'uppercase'
+            }}>
+                {title.split(' ').map((word, i) => (
+                    <span key={i} style={{ display: 'block', color: i === 1 ? 'var(--color-accent)' : 'white' }}>{word}</span>
+                ))}
+            </h2>
+            <p style={{
+                fontFamily: 'var(--font-main)',
+                fontSize: '1.1rem',
+                color: '#aaa',
+                marginBottom: '40px',
+                lineHeight: '1.6',
+                maxWidth: '400px',
+                marginLeft: align === 'left' ? '0' : 'auto'
+            }}>
+                {description}
+            </p>
+            <Link to="/shop" className="btn" style={{
+                display: 'inline-block',
+                border: '1px solid white',
+                padding: '15px 40px',
+                textTransform: 'uppercase',
+                letterSpacing: '2px',
+                fontSize: '0.9rem'
+            }}>
+                Comprar el Look
+            </Link>
+        </div>
+    </motion.div>
+);
 
 const CollectionsPage = () => {
     const { t } = useLanguage();
 
     return (
-        <div className="container" style={{ paddingTop: '120px', paddingBottom: '80px', minHeight: '100vh' }}>
-            <h1 style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '3rem',
-                marginBottom: '60px',
-                textTransform: 'uppercase',
-                textAlign: 'center'
-            }}>{t.nav.collections}</h1>
+        <div style={{ minHeight: '100vh', background: 'var(--color-bg)' }}>
+            {/* Hero Banner */}
+            <section style={{
+                height: '80vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+                marginBottom: '100px'
+            }}>
+                <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: 'url("https://images.unsplash.com/photo-1617385986682-132d2b553372?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat',
+                    filter: 'brightness(0.4)'
+                }}></div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '100px' }}>
-                {collections.map((collection, index) => (
-                    <div key={collection.id} style={{
-                        display: 'grid',
-                        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                        gap: '40px',
-                        alignItems: 'center',
-                        direction: index % 2 === 1 ? 'rtl' : 'ltr' // Alternating layout
-                    }}>
-                        <div style={{ position: 'relative', height: '400px', overflow: 'hidden' }}>
-                            <img
-                                src={collection.image}
-                                alt={collection.title}
-                                style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(20%) contrast(1.2)' }}
-                            />
-                            <div style={{
-                                position: 'absolute',
-                                top: 0,
-                                left: 0,
-                                width: '100%',
-                                height: '100%',
-                                background: 'rgba(0,0,0,0.3)'
-                            }}></div>
-                        </div>
+                <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
+                    <motion.h1
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
+                        style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: 'clamp(4rem, 10vw, 12rem)',
+                            lineHeight: '0.8',
+                            textTransform: 'uppercase',
+                            color: 'white',
+                            textShadow: '0 0 50px rgba(123, 44, 191, 0.5)'
+                        }}
+                    >
+                        NEBULA<br />ONE
+                    </motion.h1>
+                    <p style={{
+                        marginTop: '20px',
+                        fontSize: '1.2rem',
+                        letterSpacing: '5px',
+                        textTransform: 'uppercase',
+                        color: 'var(--color-accent-secondary)'
+                    }}>Otoño / Invierno 2025</p>
+                </div>
+            </section>
 
-                        <div style={{ textAlign: index % 2 === 1 ? 'right' : 'left', direction: 'ltr' }}>
-                            <h2 style={{
-                                fontFamily: 'var(--font-display)',
-                                fontSize: '3rem',
-                                marginBottom: '20px',
-                                color: 'var(--color-accent)'
-                            }}>{collection.title}</h2>
-                            <p style={{ fontSize: '1.2rem', color: '#ccc', marginBottom: '30px' }}>{collection.description}</p>
-                            <Link to="/shop" className="btn">Explore Collection</Link>
-                        </div>
-                    </div>
-                ))}
+            {/* Lookbook Content */}
+            <div className="container" style={{ paddingBottom: '100px' }}>
+                <LookbookItem
+                    image="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop"
+                    title="Noches de Neón"
+                    description="Diseñado para el viajero nocturno. Tejidos de alta visibilidad se encuentran con siluetas sigilosas."
+                    align="left"
+                    delay={0.2}
+                />
+
+                <LookbookItem
+                    image="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1000&auto=format&fit=crop"
+                    title="Núcleo Cyber"
+                    description="Integración de tecnología y textil. Accesorios modulares para el operativo urbano."
+                    align="right"
+                    delay={0.2}
+                />
+
+                <LookbookItem
+                    image="https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop"
+                    title="Decadencia Industrial"
+                    description="Texturas crudas y acabados desgastados inspirados en la infraestructura del viejo mundo."
+                    align="left"
+                    delay={0.2}
+                />
             </div>
         </div>
     );

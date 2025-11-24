@@ -15,7 +15,7 @@ const Hero = () => {
             alignItems: 'center',
             justifyContent: 'center',
             overflow: 'hidden',
-            background: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat'
+            background: 'linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url("https://images.unsplash.com/photo-1535295972055-1c762f4483e5?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat'
         }}>
             {/* Overlay Gradient */}
             <div style={{
@@ -39,10 +39,10 @@ const Hero = () => {
                         letterSpacing: 'clamp(2px, 1vw, 5px)',
                         textTransform: 'uppercase',
                         marginBottom: '20px',
-                        color: 'var(--color-accent)'
+                        color: 'var(--color-accent-secondary)'
                     }}
                 >
-                    {t.hero.subtitle}
+                    FUTURE IS NOW
                 </motion.h2>
 
                 <motion.h1
@@ -55,16 +55,16 @@ const Hero = () => {
                         lineHeight: '0.9',
                         textTransform: 'uppercase',
                         marginBottom: 'clamp(20px, 5vw, 40px)',
-                        textShadow: '0 0 20px rgba(0,0,0,0.5)'
+                        textShadow: '0 0 40px rgba(0, 68, 255, 0.4)'
                     }}
                 >
-                    {t.hero.title}<br />
+                    ANDROMEDA<br />
                     <span style={{
                         color: 'transparent',
                         WebkitTextStroke: 'clamp(1px, 0.3vw, 2px) var(--color-text)',
                         position: 'relative'
                     }}>
-                        {t.hero.title2}
+                        STREET
                         <motion.span
                             animate={{ opacity: [0.5, 1, 0.5] }}
                             transition={{ duration: 2, repeat: Infinity }}
@@ -76,12 +76,12 @@ const Hero = () => {
                                 height: '100%',
                                 color: 'var(--color-accent)',
                                 WebkitTextStroke: '0px',
-                                filter: 'blur(5px)',
-                                opacity: 0.5,
+                                filter: 'blur(8px)',
+                                opacity: 0.6,
                                 zIndex: -1
                             }}
                         >
-                            {t.hero.title2}
+                            STREET
                         </motion.span>
                     </span>
                 </motion.h1>
@@ -91,8 +91,12 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    <a href="/shop" className="btn">
-                        {t.hero.cta}
+                    <a href="/shop" className="btn" style={{
+                        borderColor: 'var(--color-accent)',
+                        background: 'rgba(0, 68, 255, 0.1)',
+                        backdropFilter: 'blur(5px)'
+                    }}>
+                        SHOP DROP
                     </a>
                 </motion.div>
             </div>
