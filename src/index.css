@@ -13,8 +13,8 @@
     --color-accent: #5A0E1B;
     /* Dark Wine */
     --color-accent-glow: rgba(90, 14, 27, 0.6);
-    --color-accent-secondary: #3D004F;
-    /* Deep Purple */
+    --color-accent-secondary: #5A0E1B;
+    /* Unified to Dark Wine */
 
     --color-border: #333333;
     --color-gray: #444444;
@@ -138,6 +138,18 @@ a {
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    h1 {
+        font-size: 3rem !important;
+    }
+
+    h2 {
+        font-size: 2rem !important;
+    }
+
     ::-webkit-scrollbar {
         width: 4px;
     }
@@ -157,5 +169,11 @@ a {
     /* Optimize images for mobile */
     img {
         height: auto;
+    }
+
+    /* Cart Page Responsive */
+    .cart-layout {
+        grid-template-columns: 1fr !important;
+        gap: 40px !important;
     }
 }

@@ -32,7 +32,7 @@ const CartPage = () => {
                 paddingBottom: '20px'
             }}>Shopping Cart</h1>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '60px' }}>
+            <div className="cart-layout" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '60px' }}>
                 {/* Cart Items */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
                     {cart.map((item) => (
@@ -132,13 +132,13 @@ const CartPage = () => {
                         paddingTop: '20px'
                     }}>
                         <span>Total</span>
-                        <span style={{ color: 'var(--color-accent-secondary)' }}>$ {cartTotal.toLocaleString('es-CO')}</span>
+                        <span style={{ color: 'var(--color-accent)' }}>$ {cartTotal.toLocaleString('es-CO')}</span>
                     </div>
 
                     <button style={{
                         width: '100%',
                         padding: '15px',
-                        background: 'var(--color-accent-secondary)',
+                        background: 'var(--color-accent)',
                         color: 'black',
                         border: 'none',
                         fontFamily: 'var(--font-display)',
