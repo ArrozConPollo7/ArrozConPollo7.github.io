@@ -120,8 +120,8 @@ const Navbar = () => {
                 {/* Language Toggle */}
                 {!isMobile && <Search size={24} style={{ cursor: 'pointer' }} />}
 
-                <Link to="/cart" style={{ position: 'relative', cursor: 'pointer', color: 'inherit' }}>
-                    <ShoppingBag size={isMobile ? 22 : 24} />
+                <Link to="/cart" style={{ position: 'relative', cursor: 'pointer', color: 'inherit', display: 'flex', alignItems: 'center' }}>
+                    <ShoppingBag size={24} />
                     {cartCount > 0 && (
                         <span style={{
                             position: 'absolute',
@@ -239,7 +239,10 @@ const Navbar = () => {
         }
         @media (max-width: 768px) {
           .desktop-menu { display: none !important; }
-          .mobile-toggle { display: block !important; }
+          .mobile-toggle { 
+            display: flex !important;
+            align-items: center;
+          }
           .mobile-link {
             font-size: 1.5rem;
           }

@@ -12,11 +12,14 @@ import AboutPage from './pages/AboutPage';
 
 import Home from './pages/Home';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   return (
     <LanguageProvider>
       <CartProvider>
         <Router>
+          <ScrollToTop />
           <div className="app">
             <Navbar />
             <Routes>
