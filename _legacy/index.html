@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template 1 - Premium Streetwear</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Icons (Phosphor Icons or similar CDN for lightweight icons) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <button class="btn-text" id="categoriesBtn" data-i18n="nav_categories">Categorías</button>
+            </div>
+            <a href="index.html" class="logo">AKIRA<span class="accent">.</span></a>
+            <div class="nav-actions">
+                <button class="lang-toggle" id="langToggle">ES</button>
+                <button class="icon-btn"><i class="ph ph-magnifying-glass"></i></button>
+                <button class="icon-btn"><i class="ph ph-shopping-cart"></i><span class="cart-count">0</span></button>
+                <button class="mobile-toggle" id="mobileToggle"><i class="ph ph-list"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Categories Sidebar -->
+    <div class="categories-sidebar" id="categoriesSidebar">
+        <div class="sidebar-header">
+            <h3 data-i18n="nav_categories">CATEGORÍAS</h3>
+            <button class="close-sidebar" id="closeSidebar"><i class="ph ph-x"></i></button>
+        </div>
+        <div class="sidebar-search">
+            <input type="text" placeholder="Buscar categoría..." data-i18n="search_placeholder">
+            <i class="ph ph-magnifying-glass"></i>
+        </div>
+        <div class="sidebar-content">
+            <h4 data-i18n="collection_title">COLECCIÓN</h4>
+            <ul class="category-list">
+                <li><a href="category.html?cat=all" data-i18n="cat_all">TODOS LOS PRODUCTOS <i
+                            class="ph ph-caret-right"></i></a></li>
+                <li><a href="category.html?cat=shirts" data-i18n="cat_shirts">CAMISAS <i
+                            class="ph ph-caret-right"></i></a></li>
+                <li><a href="category.html?cat=hoodies" data-i18n="cat_hoodies">BUZOS <i
+                            class="ph ph-caret-right"></i></a></li>
+                <li><a href="category.html?cat=pants" data-i18n="cat_pants">PANTALONES <i
+                            class="ph ph-caret-right"></i></a></li>
+                <li><a href="category.html?cat=accessories" data-i18n="cat_accessories">ACCESORIOS <i
+                            class="ph ph-caret-right"></i></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-bg">
+            <!-- Placeholder for Video/Image -->
+            <div class="overlay"></div>
+        </div>
+        <div class="hero-content container">
+            <h1 class="hero-title">BE YOUR <br><span class="outline-text">OWN STYLE</span></h1>
+            <p class="hero-subtitle">Ediciones limitadas. Hecho en Colombia.</p>
+            <a href="#shop" class="btn btn-primary">Ver Colección</a>
+        </div>
+    </header>
+
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>PREMIUM STREETWEAR • NUEVA COLECCIÓN • ENVÍOS A TODO EL PAÍS • CALIDAD GARANTIZADA • </span>
+            <span>PREMIUM STREETWEAR • NUEVA COLECCIÓN • ENVÍOS A TODO EL PAÍS • CALIDAD GARANTIZADA • </span>
+        </div>
+    </div>
+
+    <!-- Featured Products -->
+    <section id="shop" class="section products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nuevos Lanzamientos</h2>
+                <a href="#" class="link-arrow">Ver todo <i class="ph ph-arrow-right"></i></a>
+            </div>
+            <div class="product-grid" id="productGrid">
+                <!-- Products will be injected here or hardcoded later -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3>AKIRA.</h3>
+                <p>Redefiniendo el estilo urbano.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Ayuda</h4>
+                <ul>
+                    <li><a href="#">Envíos</a></li>
+                    <li><a href="#">Devoluciones</a></li>
+                    <li><a href="#">Términos</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Síguenos</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                    <a href="#"><i class="ph ph-tiktok-logo"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2024 Akira Template. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
