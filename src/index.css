@@ -2,26 +2,29 @@
 
 :root {
     --color-bg: #050505;
-    /* Void Black */
-    --color-text: #f8f9fa;
-    /* Starlight White */
+    /* Palette */
+    --color-bg: #000000;
+    --color-bg-secondary: #0a0a0a;
+    --color-bg-tertiary: #111111;
+
+    --color-text: #ffffff;
     --color-text-muted: #888888;
 
-    --color-accent: #0044ff;
-    /* Electric Blue */
-    --color-accent-secondary: #ccff00;
-    /* Acid Green */
-    --color-accent-tertiary: #7b2cbf;
-    /* Nebula Purple */
+    --color-accent: #6d071a;
+    /* Deep Wine / Blood */
+    --color-accent-glow: rgba(109, 7, 26, 0.5);
+    --color-accent-secondary: #240046;
+    /* Deep Purple */
 
-    --color-accent-glow: rgba(0, 68, 255, 0.6);
-    --color-gray: #1a1a1a;
-    --color-light-gray: #333333;
+    --color-border: #222222;
 
+    /* Typography */
+    --font-display: 'UnifrakturMaguntia', cursive;
+    /* Gothic / Metal */
     --font-main: 'Inter', sans-serif;
-    --font-display: 'Oswald', sans-serif;
+    /* Modern / Clean */
 
-    --spacing-container: 1400px;
+    --spacing-container: 40px;
 }
 
 * {
@@ -36,35 +39,28 @@ body {
     font-family: var(--font-main);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    position: relative;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-container);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 
 a {
     text-decoration: none;
     color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-/* --- Utilities --- */
-.container {
-    max-width: var(--spacing-container);
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
 }
 
 .btn {

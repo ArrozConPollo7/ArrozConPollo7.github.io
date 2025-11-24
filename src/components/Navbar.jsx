@@ -41,14 +41,14 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: isMobile ? '1.3rem' : '2rem',
-                fontWeight: 'bold',
-                letterSpacing: isMobile ? '1px' : '2px',
+                fontSize: isMobile ? '2rem' : '3rem',
+                fontWeight: '400',
+                letterSpacing: '2px',
                 color: 'var(--color-text)',
-                textShadow: '0 0 10px var(--color-accent-glow)',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                textShadow: '0 0 20px rgba(0,0,0,0.8)'
             }}>
-                TEMPLATE 1
+                ANDROMEDA
             </Link>
 
             {/* Desktop Links */}

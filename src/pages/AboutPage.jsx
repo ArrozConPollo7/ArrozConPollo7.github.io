@@ -6,9 +6,7 @@ const AboutPage = () => {
         <div style={{ minHeight: '100vh', background: 'var(--color-bg)', overflow: 'hidden' }}>
 
             {/* Kinetic Header */}
-            <section style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                <div style={{ position: 'absolute', width: '100%', height: '100%', opacity: 0.1, background: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }}></div>
-
+            <section style={{ height: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                 <div className="container" style={{ textAlign: 'center', zIndex: 10 }}>
                     <motion.h1
                         initial={{ opacity: 0, y: 50 }}
@@ -19,11 +17,12 @@ const AboutPage = () => {
                             fontSize: 'clamp(3rem, 10vw, 8rem)',
                             lineHeight: '0.9',
                             textTransform: 'uppercase',
-                            marginBottom: '40px'
+                            marginBottom: '40px',
+                            color: 'white'
                         }}
                     >
                         Nacido en el<br />
-                        <span style={{ color: 'var(--color-accent-tertiary)', textShadow: '0 0 30px rgba(123, 44, 191, 0.5)' }}>Vacío Digital</span>
+                        <span style={{ color: 'var(--color-accent)', textShadow: '0 0 30px rgba(109, 7, 26, 0.5)' }}>Vacío Digital</span>
                     </motion.h1>
 
                     <motion.p
@@ -31,15 +30,16 @@ const AboutPage = () => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
                         style={{
-                            fontSize: 'clamp(1rem, 2vw, 1.5rem)',
-                            maxWidth: '800px',
+                            fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                            maxWidth: '700px',
                             margin: '0 auto',
-                            color: '#aaa',
-                            lineHeight: '1.6'
+                            color: '#888',
+                            lineHeight: '1.6',
+                            fontFamily: 'var(--font-main)'
                         }}
                     >
-                        No somos solo una marca de ropa. Somos una señal en el ruido.
-                        Creando equipo para el explorador urbano moderno que navega la intersección entre realidades físicas y digitales.
+                        No somos moda. Somos una declaración de guerra contra lo ordinario.
+                        Andromeda Streetwear es la armadura para el caos urbano.
                     </motion.p>
                 </div>
             </section>
@@ -47,7 +47,7 @@ const AboutPage = () => {
             {/* Manifesto / Timeline */}
             <section className="container" style={{ paddingBottom: '150px' }}>
                 <div style={{
-                    borderLeft: '1px solid #333',
+                    borderLeft: '2px solid #222',
                     paddingLeft: '40px',
                     marginLeft: '20px',
                     position: 'relative'
@@ -55,51 +55,36 @@ const AboutPage = () => {
                     <div className="timeline-item" style={{ marginBottom: '100px' }}>
                         <span style={{
                             color: 'var(--color-accent)',
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '1.2rem'
-                        }}>2024</span>
+                            fontFamily: 'var(--font-main)',
+                            fontWeight: 'bold',
+                            fontSize: '1rem',
+                            letterSpacing: '2px'
+                        }}>ORIGEN</span>
                         <h2 style={{
-                            fontFamily: 'var(--font-display)',
                             fontSize: '3rem',
                             textTransform: 'uppercase',
                             margin: '10px 0 20px'
                         }}>El Despertar</h2>
-                        <p style={{ color: '#888', maxWidth: '600px', lineHeight: '1.6' }}>
-                            Andromeda Street emerge de la escena underground. Un colectivo de diseñadores y artistas digitales unidos por una visión: redefinir el streetwear para el futuro.
+                        <p style={{ color: '#666', maxWidth: '600px', lineHeight: '1.6' }}>
+                            Surgimos de la oscuridad. Sin reglas, sin compromisos. Solo estética pura y cruda.
                         </p>
                     </div>
 
                     <div className="timeline-item" style={{ marginBottom: '100px' }}>
                         <span style={{
-                            color: 'var(--color-accent-secondary)',
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '1.2rem'
-                        }}>2025</span>
+                            color: 'var(--color-text)',
+                            fontFamily: 'var(--font-main)',
+                            fontWeight: 'bold',
+                            fontSize: '1rem',
+                            letterSpacing: '2px'
+                        }}>AHORA</span>
                         <h2 style={{
-                            fontFamily: 'var(--font-display)',
                             fontSize: '3rem',
                             textTransform: 'uppercase',
                             margin: '10px 0 20px'
                         }}>Expansión</h2>
-                        <p style={{ color: '#888', maxWidth: '600px', lineHeight: '1.6' }}>
-                            Lanzamiento de la colección "Nebula One". Envíos globales habilitados. La comunidad crece más allá de las fronteras, conectando nodos en todo el planeta.
-                        </p>
-                    </div>
-
-                    <div className="timeline-item">
-                        <span style={{
-                            color: 'var(--color-accent-tertiary)',
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '1.2rem'
-                        }}>FUTURO</span>
-                        <h2 style={{
-                            fontFamily: 'var(--font-display)',
-                            fontSize: '3rem',
-                            textTransform: 'uppercase',
-                            margin: '10px 0 20px'
-                        }}>Ascensión</h2>
-                        <p style={{ color: '#888', maxWidth: '600px', lineHeight: '1.6' }}>
-                            Integración de wearables AR y activos digitales. La línea entre IRL y URL continúa difuminándose. Estamos listos. ¿Y tú?
+                        <p style={{ color: '#666', maxWidth: '600px', lineHeight: '1.6' }}>
+                            Dominando el asfalto. Nuestra comunidad crece, una legión de sombras en la ciudad.
                         </p>
                     </div>
                 </div>

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
     const { addToCart } = useCart();
     const { t } = useLanguage();
+    const [hovered, setHovered] = useState(false);
 
     // Helper to safely get price
     const price = product.pricing?.priceRange?.start?.gross?.amount || 0;
@@ -16,103 +18,97 @@ const ProductCard = ({ product }) => {
 
     const handleAddToCart = (e) => {
         e.preventDefault();
+        e.stopPropagation();
         // Default to first variant if available, or generic
         const size = product.variants?.[0]?.name || 'M';
         addToCart({ ...product, price, image }, size);
     };
 
     return (
-        <div className="product-card" style={{
-            position: 'relative',
-            group: 'card'
-        }}>
-            <div style={{
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '4px',
-                marginBottom: '15px',
-                aspectRatio: '3/4'
-            }}>
-                <img
-                    src={image}
-                    alt={product.name}
-                    style={{
+        <div
+            style={{ position: 'relative', group: 'card' }}
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+        >
+            <Link to={`/product/${product.id}`} style={{ display: 'block', overflow: 'hidden' }}>
+                <div style={{
+                    position: 'relative',
+                    aspectRatio: '3/4',
+                    overflow: 'hidden',
+                    backgroundColor: '#111'
+                }}>
+                    <img
+                        src={image}
+                        alt={product.name}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover',
+                            transition: 'transform 0.6s ease',
+                            transform: hovered ? 'scale(1.05)' : 'scale(1)',
+                            filter: hovered ? 'grayscale(0%)' : 'grayscale(30%) contrast(1.1)'
+                        }}
+                    />
+
+                    {/* Hover Overlay */}
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
                         width: '100%',
                         height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.5s ease'
-                    }}
-                    className="product-image"
-                />
+                        background: 'rgba(0,0,0,0.2)',
+                        opacity: hovered ? 0 : 1,
+                        transition: 'opacity 0.3s ease'
+                    }}></div>
+                </div>
 
-                {/* Hover Overlay */}
-                <div className="product-overlay" style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
+                <div style={{ padding: '20px 0' }}>
+                    <h3 style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '1.4rem',
+                        marginBottom: '5px',
+                        color: 'white',
+                        letterSpacing: '1px'
+                    }}>{product.name}</h3>
+
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <p style={{ color: '#666', fontSize: '0.9rem' }}>{category}</p>
+                        <p style={{
+                            color: 'white',
+                            fontWeight: '600',
+                            fontFamily: 'var(--font-main)'
+                        }}>
+                            ${price.toLocaleString()}
+                        </p>
+                    </div>
+                </div>
+            </Link>
+
+            <button
+                onClick={handleAddToCart}
+                style={{
                     width: '100%',
-                    height: '100%',
-                    background: 'rgba(0,0,0,0.4)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    opacity: 0,
-                    transition: 'opacity 0.3s ease'
-                }}>
-                    <button
-                        onClick={handleAddToCart}
-                        style={{
-                            background: 'var(--color-accent-secondary)',
-                            color: 'black',
-                            border: 'none',
-                            padding: '12px 24px',
-                            borderRadius: '2px',
-                            cursor: 'pointer',
-                            fontWeight: 'bold',
-                            textTransform: 'uppercase',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            fontFamily: 'var(--font-display)',
-                            letterSpacing: '1px'
-                        }}
-                    >
-                        <ShoppingBag size={18} /> {t.products.addToCart}
-                    </button>
-                </div>
-            </div>
-
-            <div>
-                <h3 style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.2rem',
+                    padding: '12px',
+                    background: 'transparent',
+                    border: '1px solid #333',
+                    color: 'white',
                     textTransform: 'uppercase',
-                    marginBottom: '5px',
-                    color: 'var(--color-text)'
-                }}>{product.name}</h3>
-
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <p style={{
-                        color: '#888',
-                        fontSize: '0.9rem'
-                    }}>{category}</p>
-                    <p style={{
-                        fontFamily: 'var(--font-main)',
-                        fontWeight: 'bold',
-                        color: 'var(--color-accent)',
-                        fontSize: '1.1rem'
-                    }}>$ {price.toLocaleString('es-CO')}</p>
-                </div>
-            </div>
-
-            <style>{`
-        .product-card:hover .product-image {
-          transform: scale(1.05);
-        }
-        .product-card:hover .product-overlay {
-          opacity: 1;
-        }
-      `}</style>
+                    fontSize: '0.8rem',
+                    letterSpacing: '1px',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    opacity: hovered ? 1 : 0,
+                    transform: hovered ? 'translateY(0)' : 'translateY(10px)',
+                    position: 'absolute',
+                    bottom: '90px',
+                    left: 0,
+                    backgroundColor: 'rgba(0,0,0,0.8)',
+                    backdropFilter: 'blur(5px)'
+                }}
+            >
+                {t.products.addToCart}
+            </button>
         </div>
     );
 };
