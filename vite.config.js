@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/Template1/', // Cambia 'Template1' por el nombre de tu repositorio
+  base: '/', // Root path for user GitHub Pages (ArrozConPollo7.github.io)
 })
