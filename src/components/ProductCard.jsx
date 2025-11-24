@@ -1,7 +1,10 @@
 import React from 'react';
 import { ShoppingBag } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const ProductCard = ({ product }) => {
+    const { t } = useLanguage();
+
     return (
         <div className="product-card" style={{
             position: 'relative',
@@ -19,7 +22,7 @@ const ProductCard = ({ product }) => {
             }}>
                 <img
                     src={product.image}
-                    alt={product.name}
+                    alt={t.productNames[product.id]}
                     style={{
                         position: 'absolute',
                         top: 0,
@@ -63,13 +66,13 @@ const ProductCard = ({ product }) => {
                     textTransform: 'uppercase',
                     marginBottom: '5px',
                     color: 'var(--color-text)'
-                }}>{product.name}</h3>
+                }}>{t.productNames[product.id]}</h3>
                 <p style={{
                     fontFamily: 'var(--font-main)',
                     color: 'var(--color-light-gray)',
                     fontSize: '0.9rem',
                     marginBottom: '8px'
-                }}>{product.category}</p>
+                }}>{t.categories[product.category]}</p>
                 <p style={{
                     fontFamily: 'var(--font-main)',
                     fontWeight: 'bold',

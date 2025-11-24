@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { products } from '../components/ProductGrid';
 import { useCart } from '../context/CartContext';
+import { useLanguage } from '../context/LanguageContext';
 import { Check } from 'lucide-react';
 
 const ProductPage = () => {
     const { id } = useParams();
     const product = products.find(p => p.id === parseInt(id));
     const { addToCart } = useCart();
+    const { t } = useLanguage();
 
     const [selectedSize, setSelectedSize] = useState(null);
     const [added, setAdded] = useState(false);
@@ -33,7 +35,7 @@ const ProductPage = () => {
                 <div style={{ position: 'relative' }}>
                     <img
                         src={product.image}
-                        alt={product.name}
+                        alt={t.productNames[product.id]}
                         style={{ width: '100%', borderRadius: '4px', boxShadow: '0 0 30px rgba(0,0,0,0.5)' }}
                     />
                     <div style={{
@@ -47,7 +49,7 @@ const ProductPage = () => {
                         textTransform: 'uppercase',
                         letterSpacing: '1px'
                     }}>
-                        New Arrival
+                        {t.products.newArrival}
                     </div>
                 </div>
 
@@ -59,7 +61,7 @@ const ProductPage = () => {
                         textTransform: 'uppercase',
                         lineHeight: '1',
                         marginBottom: '20px'
-                    }}>{product.name}</h1>
+                    }}>{t.productNames[product.id]}</h1>
 
                     <p style={{
                         color: 'var(--color-accent)',
@@ -77,7 +79,7 @@ const ProductPage = () => {
 
                     {/* Size Selector */}
                     <div style={{ marginBottom: '40px' }}>
-                        <p style={{ marginBottom: '15px', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1px' }}>Select Size</p>
+                        <p style={{ marginBottom: '15px', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1px' }}>{t.products.selectSize}</p>
                         <div style={{ display: 'flex', gap: '15px' }}>
                             {['S', 'M', 'L', 'XL'].map(size => (
                                 <button
@@ -124,10 +126,10 @@ const ProductPage = () => {
                     >
                         {added ? (
                             <>
-                                <Check size={24} /> Added to Cart
+                                <Check size={24} /> {t.products.added}
                             </>
                         ) : (
-                            'Add to Cart'
+                            t.products.addToCart
                         )}
                     </button>
                 </div>

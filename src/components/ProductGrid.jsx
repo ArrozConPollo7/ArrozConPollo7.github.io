@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
+import { useLanguage } from '../context/LanguageContext';
 
 export const products = [
     {
@@ -30,10 +31,40 @@ export const products = [
         category: 'Outerwear',
         price: 450000,
         image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop'
+    },
+    {
+        id: 5,
+        name: 'Acid Wash Tee',
+        category: 'T-Shirts',
+        price: 140000,
+        image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop'
+    },
+    {
+        id: 6,
+        name: 'Utility Vest',
+        category: 'Outerwear',
+        price: 250000,
+        image: 'https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=1000&auto=format&fit=crop'
+    },
+    {
+        id: 7,
+        name: 'Street Joggers',
+        category: 'Bottoms',
+        price: 180000,
+        image: 'https://images.unsplash.com/photo-1584865288642-42078afe6942?q=80&w=1000&auto=format&fit=crop'
+    },
+    {
+        id: 8,
+        name: 'Graphic Hoodie',
+        category: 'Hoodies',
+        price: 290000,
+        image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop'
     }
 ];
 
 const ProductGrid = () => {
+    const { t } = useLanguage();
+
     return (
         <section className="container" style={{ padding: '80px 20px' }}>
             <div style={{
@@ -49,8 +80,8 @@ const ProductGrid = () => {
                     fontSize: '2.5rem',
                     textTransform: 'uppercase',
                     color: 'var(--color-text)'
-                }}>Latest Drops</h2>
-                <a href="#" className="btn">View All</a>
+                }}>{t.products.title}</h2>
+                <Link to="/shop" className="btn">{t.products.viewAll}</Link>
             </div>
 
             <div style={{

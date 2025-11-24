@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const Hero = () => {
+    const { t } = useLanguage();
+
     return (
         <section style={{
             height: '100vh',
@@ -38,7 +41,7 @@ const Hero = () => {
                         color: 'var(--color-accent)'
                     }}
                 >
-                    New Collection 2025
+                    {t.hero.subtitle}
                 </motion.h2>
 
                 <motion.h1
@@ -54,13 +57,13 @@ const Hero = () => {
                         textShadow: '0 0 20px rgba(0,0,0,0.5)'
                     }}
                 >
-                    STREET<br />
+                    {t.hero.title}<br />
                     <span style={{
                         color: 'transparent',
                         WebkitTextStroke: '2px var(--color-text)',
                         position: 'relative'
                     }}>
-                        CULTURE
+                        {t.hero.title2}
                         <motion.span
                             animate={{ opacity: [0.5, 1, 0.5] }}
                             transition={{ duration: 2, repeat: Infinity }}
@@ -77,7 +80,7 @@ const Hero = () => {
                                 zIndex: -1
                             }}
                         >
-                            CULTURE
+                            {t.hero.title2}
                         </motion.span>
                     </span>
                 </motion.h1>
@@ -87,8 +90,8 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    <a href="#" className="btn">
-                        Shop The Drop
+                    <a href="/shop" className="btn">
+                        {t.hero.cta}
                     </a>
                 </motion.div>
             </div>

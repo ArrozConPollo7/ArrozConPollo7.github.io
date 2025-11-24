@@ -1,7 +1,10 @@
 import React from 'react';
 import { Instagram, Twitter, Facebook, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+    const { t } = useLanguage();
+
     return (
         <footer style={{
             backgroundColor: '#050505',
@@ -20,30 +23,30 @@ const Footer = () => {
                         fontFamily: 'var(--font-display)',
                         fontSize: '2rem',
                         marginBottom: '20px'
-                    }}>AKROSS</h2>
+                    }}>TEMPLATE 1</h2>
                     <p style={{ color: '#888', lineHeight: '1.6' }}>
-                        Redefining streetwear culture with futuristic designs and premium quality.
+                        {t.footer.brandDesc}
                     </p>
                 </div>
 
                 {/* Links */}
                 <div>
-                    <h3 style={{ marginBottom: '20px', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1px' }}>Shop</h3>
+                    <h3 style={{ marginBottom: '20px', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1px' }}>{t.footer.shop}</h3>
                     <ul style={{ display: 'flex', flexDirection: 'column', gap: '10px', color: '#888' }}>
-                        <li><a href="#" className="hover-link">New Arrivals</a></li>
-                        <li><a href="#" className="hover-link">Best Sellers</a></li>
-                        <li><a href="#" className="hover-link">Accessories</a></li>
-                        <li><a href="#" className="hover-link">Sale</a></li>
+                        <li><a href="#" className="hover-link">{t.footer.links.newArrivals}</a></li>
+                        <li><a href="#" className="hover-link">{t.footer.links.bestSellers}</a></li>
+                        <li><a href="#" className="hover-link">{t.footer.links.accessories}</a></li>
+                        <li><a href="#" className="hover-link">{t.footer.links.sale}</a></li>
                     </ul>
                 </div>
 
                 {/* Newsletter */}
                 <div>
-                    <h3 style={{ marginBottom: '20px', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1px' }}>Stay in the Loop</h3>
+                    <h3 style={{ marginBottom: '20px', textTransform: 'uppercase', fontSize: '0.9rem', letterSpacing: '1px' }}>{t.footer.stayInLoop}</h3>
                     <div style={{ display: 'flex', borderBottom: '1px solid #444', paddingBottom: '10px' }}>
                         <input
                             type="email"
-                            placeholder="Enter your email"
+                            placeholder={t.footer.placeholder}
                             style={{
                                 background: 'transparent',
                                 border: 'none',
@@ -69,7 +72,7 @@ const Footer = () => {
                 flexWrap: 'wrap',
                 gap: '20px'
             }}>
-                <p style={{ color: '#444', fontSize: '0.8rem' }}>© 2025 AKROSS. All rights reserved.</p>
+                <p style={{ color: '#444', fontSize: '0.8rem' }}>{t.footer.rights}</p>
                 <div style={{ display: 'flex', gap: '20px', color: '#888' }}>
                     <Instagram size={20} style={{ cursor: 'pointer' }} />
                     <Twitter size={20} style={{ cursor: 'pointer' }} />
