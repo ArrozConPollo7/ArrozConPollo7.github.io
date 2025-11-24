@@ -35,11 +35,11 @@ const FeaturedGrid = () => {
                     justifyContent: 'space-between',
                     alignItems: 'flex-end',
                     marginBottom: '60px',
-                    borderBottom: '1px solid #222',
+                    borderBottom: '1px solid #333',
                     paddingBottom: '20px'
                 }}>
-                    <h2 style={{
-                        fontSize: 'clamp(2rem, 5vw, 4rem)',
+                    <h2 className="metal-title" style={{
+                        fontSize: 'clamp(3rem, 6vw, 5rem)',
                         margin: 0,
                         lineHeight: 1
                     }}>
@@ -50,20 +50,19 @@ const FeaturedGrid = () => {
 
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                    gap: '2px', // Tight grid
-                    background: '#222' // Border color effect
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+                    gap: '20px',
                 }}>
                     {items.map((item, index) => (
                         <motion.div
                             key={item.id}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
                             style={{
                                 position: 'relative',
                                 height: '600px',
-                                background: 'black',
+                                background: '#111',
                                 overflow: 'hidden'
                             }}
                             className="featured-item"
@@ -76,32 +75,36 @@ const FeaturedGrid = () => {
                                         width: '100%',
                                         height: '100%',
                                         objectFit: 'cover',
-                                        filter: 'grayscale(100%)',
+                                        filter: 'grayscale(100%) contrast(1.2)',
                                         transition: 'all 0.5s ease'
                                     }}
                                     onMouseOver={e => {
-                                        e.target.style.filter = 'grayscale(0%)';
+                                        e.target.style.filter = 'grayscale(0%) contrast(1.1)';
                                         e.target.style.transform = 'scale(1.05)';
                                     }}
                                     onMouseOut={e => {
-                                        e.target.style.filter = 'grayscale(100%)';
+                                        e.target.style.filter = 'grayscale(100%) contrast(1.2)';
                                         e.target.style.transform = 'scale(1)';
                                     }}
                                 />
                                 <div style={{
                                     position: 'absolute',
-                                    bottom: '30px',
-                                    left: '30px',
+                                    bottom: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    padding: '30px',
+                                    background: 'linear-gradient(to top, #000, transparent)',
                                     zIndex: 2,
                                     pointerEvents: 'none'
                                 }}>
                                     <h3 style={{
-                                        fontSize: '2rem',
+                                        fontFamily: 'var(--font-display)',
+                                        fontSize: '2.5rem',
                                         color: 'white',
                                         margin: 0,
                                         textShadow: '0 2px 10px rgba(0,0,0,0.8)'
                                     }}>{item.title}</h3>
-                                    <p style={{ color: 'var(--color-accent)', margin: 0 }}>{item.subtitle}</p>
+                                    <p style={{ color: 'var(--color-accent)', margin: 0, textTransform: 'uppercase', letterSpacing: '2px' }}>{item.subtitle}</p>
                                 </div>
                             </Link>
                         </motion.div>

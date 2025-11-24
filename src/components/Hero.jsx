@@ -17,7 +17,7 @@ const Hero = () => {
             overflow: 'hidden',
             background: '#000'
         }}>
-            {/* Background Image/Video Placeholder - Dark Editorial */}
+            {/* Background Image - Dark Urban Placeholder */}
             <div style={{
                 position: 'absolute',
                 top: 0,
@@ -36,7 +36,7 @@ const Hero = () => {
                 left: 0,
                 width: '100%',
                 height: '100%',
-                background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,1))'
+                background: 'radial-gradient(circle at center, transparent 0%, #000 90%)'
             }}></div>
 
             <div className="container" style={{
@@ -56,27 +56,28 @@ const Hero = () => {
                         fontSize: 'clamp(0.8rem, 2vw, 1rem)',
                         letterSpacing: '0.5em',
                         textTransform: 'uppercase',
-                        marginBottom: '20px',
-                        color: '#aaa'
+                        marginBottom: '30px',
+                        color: 'var(--color-accent)',
+                        fontWeight: '600'
                     }}
                 >
                     Est. 2024
                 </motion.p>
 
                 <motion.h1
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
+                    initial={{ opacity: 0, scale: 0.95, filter: 'blur(10px)' }}
+                    animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+                    transition={{ duration: 1.2, ease: "easeOut" }}
                     style={{
                         fontFamily: 'var(--font-display)',
-                        fontSize: 'clamp(4rem, 15vw, 10rem)',
+                        fontSize: 'clamp(5rem, 18vw, 12rem)',
                         lineHeight: '0.8',
                         color: 'white',
-                        marginBottom: '30px',
-                        textShadow: '0 10px 30px rgba(0,0,0,0.5)'
+                        marginBottom: '40px',
+                        textShadow: '0 0 50px rgba(0,0,0,0.8)'
                     }}
                 >
-                    ANDROMEDA<br />STREET
+                    ANDROMEDA
                 </motion.h1>
 
                 <motion.p
@@ -89,7 +90,8 @@ const Hero = () => {
                         maxWidth: '600px',
                         margin: '0 auto 50px',
                         color: '#ccc',
-                        fontWeight: '300'
+                        fontWeight: '300',
+                        letterSpacing: '1px'
                     }}
                 >
                     Streetwear oscuro con carácter. Forjado en el vacío.
@@ -101,7 +103,7 @@ const Hero = () => {
                     transition={{ delay: 1 }}
                 >
                     <Link to="/shop" className="btn btn-accent">
-                        Explorar Colección
+                        NEW DROP
                     </Link>
                 </motion.div>
             </div>

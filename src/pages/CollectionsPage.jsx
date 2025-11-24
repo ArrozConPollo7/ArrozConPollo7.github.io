@@ -147,25 +147,25 @@ const CollectionsPage = () => {
             {/* Lookbook Content */}
             <div className="container" style={{ paddingBottom: '100px' }}>
                 <LookbookItem
-                    image="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop"
-                    title="Noches de Neón"
-                    description="Diseñado para el viajero nocturno. Tejidos de alta visibilidad se encuentran con siluetas sigilosas."
+                    image="/lookbook_model_1.png"
+                    title="Sombra Urbana"
+                    description="La ciudad es tuya. Tómala."
                     align="left"
                     delay={0.2}
                 />
 
                 <LookbookItem
-                    image="https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1000&auto=format&fit=crop"
-                    title="Núcleo Cyber"
-                    description="Integración de tecnología y textil. Accesorios modulares para el operativo urbano."
+                    image="/lookbook_model_2.png"
+                    title="Metal Pesado"
+                    description="Resistencia y estilo en cada costura."
                     align="right"
                     delay={0.2}
                 />
 
                 <LookbookItem
                     image="https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop"
-                    title="Decadencia Industrial"
-                    description="Texturas crudas y acabados desgastados inspirados en la infraestructura del viejo mundo."
+                    title="Caos Organizado"
+                    description="Diseño funcional para el desorden moderno."
                     align="left"
                     delay={0.2}
                 />

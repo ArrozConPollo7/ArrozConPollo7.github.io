@@ -14,7 +14,7 @@ const AboutPage = () => {
                         transition={{ duration: 0.8 }}
                         style={{
                             fontFamily: 'var(--font-display)',
-                            fontSize: 'clamp(3rem, 10vw, 8rem)',
+                            fontSize: 'clamp(4rem, 12vw, 10rem)',
                             lineHeight: '0.9',
                             textTransform: 'uppercase',
                             marginBottom: '40px',
@@ -22,7 +22,7 @@ const AboutPage = () => {
                         }}
                     >
                         Nacido en el<br />
-                        <span style={{ color: 'var(--color-accent)', textShadow: '0 0 30px rgba(109, 7, 26, 0.5)' }}>Vacío Digital</span>
+                        <span className="text-accent" style={{ textShadow: '0 0 30px rgba(90, 14, 27, 0.5)' }}>Vacío Digital</span>
                     </motion.h1>
 
                     <motion.p
@@ -38,8 +38,7 @@ const AboutPage = () => {
                             fontFamily: 'var(--font-main)'
                         }}
                     >
-                        No somos moda. Somos una declaración de guerra contra lo ordinario.
-                        Andromeda Streetwear es la armadura para el caos urbano.
+                        Andromeda Streetwear es una marca urbana de estética oscura, influenciada por el metal, lo gótico y la moda editorial. Ropa con carácter para quienes tienen identidad propia.
                     </motion.p>
                 </div>
             </section>
@@ -47,7 +46,7 @@ const AboutPage = () => {
             {/* Manifesto / Timeline */}
             <section className="container" style={{ paddingBottom: '150px' }}>
                 <div style={{
-                    borderLeft: '2px solid #222',
+                    borderLeft: '2px solid #333',
                     paddingLeft: '40px',
                     marginLeft: '20px',
                     position: 'relative'

@@ -46,7 +46,7 @@ const ProductCard = ({ product }) => {
                             objectFit: 'cover',
                             transition: 'transform 0.6s ease',
                             transform: hovered ? 'scale(1.05)' : 'scale(1)',
-                            filter: hovered ? 'grayscale(0%)' : 'grayscale(30%) contrast(1.1)'
+                            filter: hovered ? 'grayscale(0%)' : 'grayscale(100%) contrast(1.2)'
                         }}
                     />
 
@@ -66,16 +66,16 @@ const ProductCard = ({ product }) => {
                 <div style={{ padding: '20px 0' }}>
                     <h3 style={{
                         fontFamily: 'var(--font-display)',
-                        fontSize: '1.4rem',
+                        fontSize: '1.6rem',
                         marginBottom: '5px',
                         color: 'white',
                         letterSpacing: '1px'
                     }}>{product.name}</h3>
 
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <p style={{ color: '#666', fontSize: '0.9rem' }}>{category}</p>
+                        <p style={{ color: '#666', fontSize: '0.9rem', textTransform: 'uppercase' }}>{category}</p>
                         <p style={{
-                            color: 'white',
+                            color: 'var(--color-accent)',
                             fontWeight: '600',
                             fontFamily: 'var(--font-main)'
                         }}>
@@ -89,22 +89,21 @@ const ProductCard = ({ product }) => {
                 onClick={handleAddToCart}
                 style={{
                     width: '100%',
-                    padding: '12px',
-                    background: 'transparent',
-                    border: '1px solid #333',
+                    padding: '15px',
+                    background: 'var(--color-accent)',
+                    border: 'none',
                     color: 'white',
                     textTransform: 'uppercase',
-                    fontSize: '0.8rem',
-                    letterSpacing: '1px',
+                    fontSize: '0.9rem',
+                    letterSpacing: '2px',
                     cursor: 'pointer',
                     transition: 'all 0.3s ease',
                     opacity: hovered ? 1 : 0,
                     transform: hovered ? 'translateY(0)' : 'translateY(10px)',
                     position: 'absolute',
-                    bottom: '90px',
+                    bottom: '100px',
                     left: 0,
-                    backgroundColor: 'rgba(0,0,0,0.8)',
-                    backdropFilter: 'blur(5px)'
+                    fontWeight: '600'
                 }}
             >
                 {t.products.addToCart}
