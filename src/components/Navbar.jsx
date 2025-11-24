@@ -20,13 +20,15 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
     return (
         <nav style={{
             position: 'fixed',
             top: 0,
             left: 0,
             width: '100%',
-            padding: '20px 40px',
+            padding: isMobile ? '15px 20px' : '20px 40px',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -39,9 +41,9 @@ const Navbar = () => {
             {/* Logo */}
             <Link to="/" style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '2rem',
+                fontSize: isMobile ? '1.3rem' : '2rem',
                 fontWeight: 'bold',
-                letterSpacing: '2px',
+                letterSpacing: isMobile ? '1px' : '2px',
                 color: 'var(--color-text)',
                 textShadow: '0 0 10px var(--color-accent-glow)',
                 textDecoration: 'none'
@@ -88,7 +90,6 @@ const Navbar = () => {
                                     marginTop: '15px'
                                 }}
                             >
-                                {/* Triangle Indicator */}
                                 <div style={{
                                     position: 'absolute',
                                     top: '-6px',
@@ -101,18 +102,10 @@ const Navbar = () => {
                                     borderTop: '1px solid rgba(255, 255, 255, 0.1)'
                                 }}></div>
 
-                                <Link to="/shop?category=tees" className="dropdown-link">
-                                    <span style={{ fontSize: '1.1rem' }}>👕</span> T-Shirts
-                                </Link>
-                                <Link to="/shop?category=hoodies" className="dropdown-link">
-                                    <span style={{ fontSize: '1.1rem' }}>🧥</span> Hoodies
-                                </Link>
-                                <Link to="/shop?category=bottoms" className="dropdown-link">
-                                    <span style={{ fontSize: '1.1rem' }}>👖</span> Pants
-                                </Link>
-                                <Link to="/shop?category=outerwear" className="dropdown-link">
-                                    <span style={{ fontSize: '1.1rem' }}>🦺</span> Jackets
-                                </Link>
+                                <Link to="/shop?category=tees" className="dropdown-link">T-Shirts</Link>
+                                <Link to="/shop?category=hoodies" className="dropdown-link">Hoodies</Link>
+                                <Link to="/shop?category=bottoms" className="dropdown-link">Pants</Link>
+                                <Link to="/shop?category=outerwear" className="dropdown-link">Jackets</Link>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -123,7 +116,7 @@ const Navbar = () => {
             </div>
 
             {/* Icons */}
-            <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: isMobile ? '15px' : '20px', alignItems: 'center' }}>
                 {/* Language Toggle */}
                 <button
                     onClick={toggleLanguage}
@@ -146,10 +139,10 @@ const Navbar = () => {
                     <Globe size={14} /> {language.toUpperCase()}
                 </button>
 
-                <Search size={24} style={{ cursor: 'pointer' }} />
+                {!isMobile && <Search size={24} style={{ cursor: 'pointer' }} />}
 
                 <Link to="/cart" style={{ position: 'relative', cursor: 'pointer', color: 'inherit' }}>
-                    <ShoppingBag size={24} />
+                    <ShoppingBag size={isMobile ? 22 : 24} />
                     {cartCount > 0 && (
                         <span style={{
                             position: 'absolute',
@@ -244,11 +237,9 @@ const Navbar = () => {
           text-decoration: none;
           transition: all 0.2s;
           font-family: var(--font-main);
-          display: flex;
-          align-items: center;
-          gap: 10px;
           padding: 8px 12px;
-          border-radius: 8px;
+          borderRadius: 8px;
+          display: block;
         }
         .dropdown-link:hover {
           color: white;
@@ -257,7 +248,7 @@ const Navbar = () => {
         }
         .mobile-link {
           font-family: var(--font-display);
-          font-size: 2.5rem;
+          font-size: 2rem;
           color: var(--color-text);
           text-decoration: none;
           text-transform: uppercase;
@@ -270,6 +261,9 @@ const Navbar = () => {
         @media (max-width: 768px) {
           .desktop-menu { display: none !important; }
           .mobile-toggle { display: block !important; }
+          .mobile-link {
+            font-size: 1.5rem;
+          }
         }
       `}</style>
         </nav>

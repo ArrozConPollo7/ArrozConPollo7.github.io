@@ -8,6 +8,7 @@ const Hero = () => {
     return (
         <section style={{
             height: '100vh',
+            minHeight: '600px',
             width: '100%',
             position: 'relative',
             display: 'flex',
@@ -27,15 +28,15 @@ const Hero = () => {
                 pointerEvents: 'none'
             }}></div>
 
-            <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
+            <div className="container" style={{ position: 'relative', zIndex: 10, textAlign: 'center', padding: '0 20px' }}>
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     style={{
                         fontFamily: 'var(--font-main)',
-                        fontSize: '1.2rem',
-                        letterSpacing: '5px',
+                        fontSize: 'clamp(0.8rem, 3vw, 1.2rem)',
+                        letterSpacing: 'clamp(2px, 1vw, 5px)',
                         textTransform: 'uppercase',
                         marginBottom: '20px',
                         color: 'var(--color-accent)'
@@ -50,17 +51,17 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                     style={{
                         fontFamily: 'var(--font-display)',
-                        fontSize: 'clamp(4rem, 10vw, 8rem)',
+                        fontSize: 'clamp(3rem, 12vw, 8rem)',
                         lineHeight: '0.9',
                         textTransform: 'uppercase',
-                        marginBottom: '40px',
+                        marginBottom: 'clamp(20px, 5vw, 40px)',
                         textShadow: '0 0 20px rgba(0,0,0,0.5)'
                     }}
                 >
                     {t.hero.title}<br />
                     <span style={{
                         color: 'transparent',
-                        WebkitTextStroke: '2px var(--color-text)',
+                        WebkitTextStroke: 'clamp(1px, 0.3vw, 2px) var(--color-text)',
                         position: 'relative'
                     }}>
                         {t.hero.title2}

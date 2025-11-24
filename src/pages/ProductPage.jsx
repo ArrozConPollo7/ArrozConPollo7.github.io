@@ -27,8 +27,8 @@ const ProductPage = () => {
         <div style={{ paddingTop: '100px', minHeight: '100vh', paddingBottom: '80px' }}>
             <div className="container" style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '60px',
+                gridTemplateColumns: window.innerWidth <= 768 ? '1fr' : 'repeat(auto-fit, minmax(300px, 1fr))',
+                gap: window.innerWidth <= 768 ? '30px' : '60px',
                 alignItems: 'center'
             }}>
                 {/* Image Side */}

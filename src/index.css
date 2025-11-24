@@ -33,23 +33,6 @@ body {
     position: relative;
 }
 
-/* Elegant Blue Glow Border */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    pointer-events: none;
-    z-index: 9999;
-    box-shadow:
-        inset 0 0 60px rgba(0, 68, 255, 0.3),
-        inset 0 0 100px rgba(0, 68, 255, 0.15),
-        inset 0 0 140px rgba(0, 68, 255, 0.08);
-    border: 2px solid rgba(0, 68, 255, 0.4);
-}
-
 a {
     text-decoration: none;
     color: inherit;
@@ -71,6 +54,12 @@ img {
     padding: 0 20px;
 }
 
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+}
+
 .btn {
     display: inline-block;
     padding: 12px 30px;
@@ -84,6 +73,15 @@ img {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
 }
 
 .btn::before {
@@ -112,6 +110,12 @@ img {
     width: 8px;
 }
 
+@media (max-width: 768px) {
+    ::-webkit-scrollbar {
+        width: 4px;
+    }
+}
+
 ::-webkit-scrollbar-track {
     background: var(--color-bg);
 }
@@ -123,4 +127,25 @@ img {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-accent);
+}
+
+/* --- Mobile Optimizations --- */
+@media (max-width: 768px) {
+
+    /* Prevent text from being too small */
+    html {
+        font-size: 16px;
+    }
+
+    /* Better touch targets */
+    button,
+    a,
+    input {
+        min-height: 44px;
+    }
+
+    /* Optimize images for mobile */
+    img {
+        height: auto;
+    }
 }
