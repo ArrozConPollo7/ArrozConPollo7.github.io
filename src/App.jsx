@@ -4,6 +4,7 @@ import { CartProvider } from './context/CartContext';
 import { LanguageProvider } from './context/LanguageContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 import ProductPage from './pages/ProductPage';
 import CartPage from './pages/CartPage';
 import ShopPage from './pages/ShopPage';
@@ -32,6 +33,7 @@ function App() {
             </Routes>
             <Footer />
           </div>
+          <WhatsAppButton />
         </Router>
       </CartProvider>
     </LanguageProvider>

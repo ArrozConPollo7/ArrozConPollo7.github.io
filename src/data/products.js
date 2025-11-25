@@ -1,136 +1,107 @@
 export const products = [
+    // HOODIES - 150.000 COP
     {
-        id: "prod_1",
-        name: 'Neon Oversized Tee',
-        category: { name: 'T-Shirts', slug: 'tees' },
+        id: "hoodie-demon-wings",
+        name: 'Hoodie Demon Wings',
+        category: { name: 'Hoodies', slug: 'hoodies' },
         pricing: { priceRange: { start: { gross: { amount: 150000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop' },
+        thumbnail: { url: '/images/products/hoodie-demon-wings.png' },
         media: [
-            { url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000&auto=format&fit=crop' } // Duplicated for gallery effect
+            { url: '/images/products/hoodie-demon-wings.png' }
         ],
         variants: [
-            { id: "var_1_s", name: "S" },
-            { id: "var_1_m", name: "M" },
-            { id: "var_1_l", name: "L" },
-            { id: "var_1_xl", name: "XL" }
+            { id: "hdw_s", name: "S" },
+            { id: "hdw_m", name: "M" },
+            { id: "hdw_l", name: "L" },
+            { id: "hdw_xl", name: "XL" }
         ],
-        description: "High-visibility neon tee designed for the night. Oversized fit with dropped shoulders."
+        description: "Hoodie negro con gráfico de alas demoníacas en la espalda. Diseño gótico detallado con logo ANDROMEDA en el pecho."
     },
     {
-        id: "prod_2",
-        name: 'Cyberpunk Hoodie',
+        id: "hoodie-skeletal-warrior",
+        name: 'Hoodie Skeletal Warrior',
         category: { name: 'Hoodies', slug: 'hoodies' },
-        pricing: { priceRange: { start: { gross: { amount: 280000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1000&auto=format&fit=crop' },
+        pricing: { priceRange: { start: { gross: { amount: 150000, currency: 'COP' } } } },
+        thumbnail: { url: '/images/products/hoodie-skeletal-warrior.png' },
         media: [
-            { url: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?q=80&w=1000&auto=format&fit=crop' }
+            { url: '/images/products/hoodie-skeletal-warrior.png' }
         ],
         variants: [
-            { id: "var_2_m", name: "M" },
-            { id: "var_2_l", name: "L" }
+            { id: "hsw_s", name: "S" },
+            { id: "hsw_m", name: "M" },
+            { id: "hsw_l", name: "L" },
+            { id: "hsw_xl", name: "XL" }
         ],
-        description: "Heavyweight cotton hoodie with cybernetic graphic prints. Kangaroo pocket and adjustable hood."
+        description: "Hoodie negro con figura esquelética guerrera en la espalda. Estilo black metal con detalles ornamentados."
     },
     {
-        id: "prod_3",
-        name: 'Tech Cargo Pants',
-        category: { name: 'Bottoms', slug: 'bottoms' },
-        pricing: { priceRange: { start: { gross: { amount: 320000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop' },
+        id: "hoodie-gothic-skull",
+        name: 'Hoodie Gothic Skull',
+        category: { name: 'Hoodies', slug: 'hoodies' },
+        pricing: { priceRange: { start: { gross: { amount: 150000, currency: 'COP' } } } },
+        thumbnail: { url: '/images/products/hoodie-gothic-skull.png' },
         media: [
-            { url: 'https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop' }
+            { url: '/images/products/hoodie-gothic-skull.png' }
         ],
         variants: [
-            { id: "var_3_30", name: "30" },
-            { id: "var_3_32", name: "32" },
-            { id: "var_3_34", name: "34" }
+            { id: "hgs_s", name: "S" },
+            { id: "hgs_m", name: "M" },
+            { id: "hgs_l", name: "L" },
+            { id: "hgs_xl", name: "XL" }
         ],
-        description: "Functional cargo pants with multiple utility pockets and adjustable ankle straps."
+        description: "Hoodie negro con calavera gótica ornamentada en la espalda. Diseño intrincado con elementos dark."
     },
     {
-        id: "prod_4",
-        name: 'Reflective Jacket',
-        category: { name: 'Outerwear', slug: 'outerwear' },
-        pricing: { priceRange: { start: { gross: { amount: 450000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop' },
+        id: "hoodie-dark-angel",
+        name: 'Hoodie Dark Angel',
+        category: { name: 'Hoodies', slug: 'hoodies' },
+        pricing: { priceRange: { start: { gross: { amount: 150000, currency: 'COP' } } } },
+        thumbnail: { url: '/images/products/hoodie-dark-angel.png' },
         media: [
-            { url: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop' }
+            { url: '/images/products/hoodie-dark-angel.png' }
         ],
         variants: [
-            { id: "var_4_m", name: "M" },
-            { id: "var_4_l", name: "L" },
-            { id: "var_4_xl", name: "XL" }
+            { id: "hda_s", name: "S" },
+            { id: "hda_m", name: "M" },
+            { id: "hda_l", name: "L" },
+            { id: "hda_xl", name: "XL" }
         ],
-        description: "Water-resistant jacket with 3M reflective details for maximum visibility."
+        description: "Hoodie negro con ángel oscuro y alas desplegadas en la espalda. Gráfico detallado estilo gótico."
     },
+
+    // T-SHIRTS - 90.000 COP
     {
-        id: "prod_5",
-        name: 'Acid Wash Tee',
+        id: "tshirt-demon-wings",
+        name: 'T-Shirt Demon Wings',
         category: { name: 'T-Shirts', slug: 'tees' },
-        pricing: { priceRange: { start: { gross: { amount: 140000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop' },
+        pricing: { priceRange: { start: { gross: { amount: 90000, currency: 'COP' } } } },
+        thumbnail: { url: '/images/products/tshirt-demon-wings.png' },
         media: [
-            { url: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop' }
+            { url: '/images/products/tshirt-demon-wings.png' }
         ],
         variants: [
-            { id: "var_5_s", name: "S" },
-            { id: "var_5_m", name: "M" },
-            { id: "var_5_l", name: "L" }
+            { id: "tdw_s", name: "S" },
+            { id: "tdw_m", name: "M" },
+            { id: "tdw_l", name: "L" },
+            { id: "tdw_xl", name: "XL" }
         ],
-        description: "Vintage wash tee with distressed details."
+        description: "Camiseta negra con gráfico de alas demoníacas en la espalda. Diseño gótico detallado con logo ANDROMEDA en el pecho."
     },
     {
-        id: "prod_6",
-        name: 'Utility Vest',
-        category: { name: 'Outerwear', slug: 'outerwear' },
-        pricing: { priceRange: { start: { gross: { amount: 250000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=1000&auto=format&fit=crop' },
+        id: "tshirt-skeletal-warrior",
+        name: 'T-Shirt Skeletal Warrior',
+        category: { name: 'T-Shirts', slug: 'tees' },
+        pricing: { priceRange: { start: { gross: { amount: 90000, currency: 'COP' } } } },
+        thumbnail: { url: '/images/products/tshirt-skeletal-warrior.png' },
         media: [
-            { url: 'https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1559563458-527698bf5295?q=80&w=1000&auto=format&fit=crop' }
+            { url: '/images/products/tshirt-skeletal-warrior.png' }
         ],
         variants: [
-            { id: "var_6_onesize", name: "One Size" }
+            { id: "tsw_s", name: "S" },
+            { id: "tsw_m", name: "M" },
+            { id: "tsw_l", name: "L" },
+            { id: "tsw_xl", name: "XL" }
         ],
-        description: "Tactical vest with modular attachment points."
-    },
-    {
-        id: "prod_7",
-        name: 'Street Joggers',
-        category: { name: 'Bottoms', slug: 'bottoms' },
-        pricing: { priceRange: { start: { gross: { amount: 180000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1584865288642-42078afe6942?q=80&w=1000&auto=format&fit=crop' },
-        media: [
-            { url: 'https://images.unsplash.com/photo-1584865288642-42078afe6942?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1584865288642-42078afe6942?q=80&w=1000&auto=format&fit=crop' }
-        ],
-        variants: [
-            { id: "var_7_s", name: "S" },
-            { id: "var_7_m", name: "M" },
-            { id: "var_7_l", name: "L" }
-        ],
-        description: "Comfortable fleece joggers with tapered fit."
-    },
-    {
-        id: "prod_8",
-        name: 'Graphic Hoodie',
-        category: { name: 'Hoodies', slug: 'hoodies' },
-        pricing: { priceRange: { start: { gross: { amount: 290000, currency: 'COP' } } } },
-        thumbnail: { url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop' },
-        media: [
-            { url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop' },
-            { url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1000&auto=format&fit=crop' }
-        ],
-        variants: [
-            { id: "var_8_m", name: "M" },
-            { id: "var_8_l", name: "L" },
-            { id: "var_8_xl", name: "XL" }
-        ],
-        description: "Bold graphic print hoodie."
+        description: "Camiseta negra con figura esquelética guerrera en la espalda. Estilo black metal con detalles ornamentados."
     }
 ];

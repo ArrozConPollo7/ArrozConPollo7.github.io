@@ -11,6 +11,7 @@ const ShopPage = () => {
     const categoryFilter = searchParams.get('category');
     const [filteredProducts, setFilteredProducts] = useState(products);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+    const [priceRange, setPriceRange] = useState(500000);
     const { t } = useLanguage();
 
     // Filter Logic
@@ -65,11 +66,61 @@ const ShopPage = () => {
                     </div>
 
                     <div style={{ marginBottom: '30px' }}>
-                        <h4 style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#888', marginBottom: '15px' }}>Price</h4>
-                        <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                            <input type="number" placeholder="Min" style={{ width: '80px', background: '#111', border: '1px solid #333', color: 'white', padding: '5px' }} />
-                            <span>-</span>
-                            <input type="number" placeholder="Max" style={{ width: '80px', background: '#111', border: '1px solid #333', color: 'white', padding: '5px' }} />
+                        <h4 style={{
+                            fontSize: '0.9rem',
+                            textTransform: 'uppercase',
+                            color: '#888',
+                            marginBottom: '20px',
+                            letterSpacing: '0.1em'
+                        }}>Price Range</h4>
+
+                        <div style={{ marginBottom: '15px' }}>
+                            <input
+                                type="range"
+                                min="0"
+                                max="500000"
+                                step="10000"
+                                value={priceRange}
+                                onChange={(e) => setPriceRange(Number(e.target.value))}
+                                style={{
+                                    width: '100%',
+                                    height: '2px',
+                                    background: 'linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) 100%, #333 100%)',
+                                    outline: 'none',
+                                    WebkitAppearance: 'none',
+                                    borderRadius: '5px',
+                                    cursor: 'pointer'
+                                }}
+                                className="price-slider"
+                            />
+                        </div>
+
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            fontSize: '0.85rem',
+                            fontWeight: '600',
+                            fontFamily: 'var(--font-main)',
+                            marginBottom: '10px'
+                        }}>
+                            <span style={{ color: '#888' }}>$0</span>
+                            <span style={{ color: '#888' }}>$500.000</span>
+                        </div>
+
+                        <div style={{
+                            textAlign: 'center',
+                            fontSize: '1.1rem',
+                            color: 'var(--color-accent)',
+                            fontWeight: '700',
+                            fontFamily: 'var(--font-main)',
+                            padding: '10px',
+                            background: 'rgba(90, 14, 27, 0.1)',
+                            borderRadius: '4px',
+                            border: '1px solid var(--color-accent)',
+                            animation: 'pulse-glow 2s ease-in-out infinite'
+                        }}>
+                            ${priceRange.toLocaleString('es-CO')}
                         </div>
                     </div>
                 </div>

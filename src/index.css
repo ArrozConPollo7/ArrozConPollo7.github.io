@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@300;400;500;600&display=swap');
+/* Fonts are now imported via @fontsource in main.jsx */
 
 :root {
     /* Palette */
@@ -19,13 +19,11 @@
     --color-border: #333333;
     --color-gray: #444444;
 
-    /* Typography */
-    --font-display: 'UnifrakturCook', cursive;
-    /* Gothic / Aggressive */
-    --font-metal: 'Morbid Blackletter', serif;
-    /* Special Titles */
-    --font-main: 'Inter', sans-serif;
-    /* Clean / Modern */
+    /* Typography - Libre Caslon Display for Titles */
+    --font-display: 'Libre Caslon Display', Georgia, serif;
+    /* Elegant Display - Libre Caslon */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    /* Clean Body - Inter Regular */
 
     --spacing-container: 40px;
 }
@@ -58,15 +56,21 @@ h5,
 h6 {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: 1px;
+    /* Libre Caslon Display Bold */
+    letter-spacing: -0.01em;
+    /* Tight, elegant tracking */
     color: #fff;
+    text-transform: uppercase;
 }
 
 .metal-title {
-    font-family: var(--font-metal);
+    font-family: var(--font-display);
+    font-weight: 700;
+    /* Libre Caslon Display Bold */
     text-transform: uppercase;
     color: #fff;
-    letter-spacing: 2px;
+    letter-spacing: 0.02em;
+    animation: heartbeat-shadow 2s ease-in-out infinite;
 }
 
 p,
@@ -74,6 +78,8 @@ a,
 span,
 li {
     font-family: var(--font-main);
+    font-weight: 400;
+    /* Inter Regular */
     color: var(--color-text-muted);
 }
 
@@ -94,7 +100,8 @@ a {
     text-transform: uppercase;
     letter-spacing: 2px;
     font-size: 0.8rem;
-    font-weight: 600;
+    font-weight: 700;
+    /* Inter Bold for buttons */
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
@@ -135,6 +142,68 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-accent);
 }
+
+/* Heartbeat Shadow Animation */
+@keyframes heartbeat-shadow {
+
+    0%,
+    100% {
+        text-shadow: 0 0 10px var(--color-accent), 0 0 20px var(--color-accent-glow);
+    }
+
+    50% {
+        text-shadow: 0 0 20px var(--color-accent), 0 0 40px var(--color-accent-glow), 0 0 60px var(--color-accent-glow);
+    }
+}
+
+/* Pulse Animation for Accents */
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 10px var(--color-accent-glow);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--color-accent-glow), 0 0 30px var(--color-accent);
+    }
+}
+
+/* Premium Price Slider */
+.price-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--color-accent-glow), 0 0 20px var(--color-accent-glow);
+    transition: all 0.3s ease;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.price-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px var(--color-accent), 0 0 40px var(--color-accent-glow);
+}
+
+.price-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 10px var(--color-accent-glow), 0 0 20px var(--color-accent-glow);
+    transition: all 0.3s ease;
+}
+
+.price-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px var(--color-accent), 0 0 40px var(--color-accent-glow);
+}
+
 
 /* Mobile Optimizations */
 @media (max-width: 768px) {
