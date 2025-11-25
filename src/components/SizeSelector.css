@@ -1,0 +1,162 @@
+.size-selector-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 20px;
+}
+
+.size-selector-modal {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.size-selector-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.size-selector-close:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+}
+
+.size-selector-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: white;
+    text-align: center;
+}
+
+.size-selector-product-name {
+    font-family: var(--font-main);
+    font-size: 1rem;
+    color: #888;
+    text-align: center;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.size-selector-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.size-selector-button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.size-selector-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: var(--color-accent);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+}
+
+.size-selector-button:hover {
+    border-color: var(--color-accent);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(90, 14, 27, 0.3);
+}
+
+.size-selector-button:hover::before {
+    width: 200%;
+    height: 200%;
+}
+
+.size-selector-button:active {
+    transform: translateY(0);
+}
+
+.size-selector-hint {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #666;
+    font-family: var(--font-main);
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .size-selector-modal {
+        padding: 30px 20px;
+    }
+
+    .size-selector-title {
+        font-size: 1.5rem;
+    }
+
+    .size-selector-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .size-selector-button {
+        padding: 18px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .size-selector-button::before {
+        transition: none;
+    }
+
+    .size-selector-button:hover {
+        transform: none;
+    }
+}

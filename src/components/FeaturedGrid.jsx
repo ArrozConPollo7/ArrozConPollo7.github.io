@@ -8,7 +8,7 @@ const FeaturedGrid = () => {
             id: 1,
             title: "Nebula One",
             subtitle: "New Collection",
-            image: "https://images.unsplash.com/photo-1551488852-d814c937d191?q=80&w=1000&auto=format&fit=crop",
+            image: "/nebula_collection_hero.png",
             link: "/collections"
         },
         {
@@ -24,20 +24,6 @@ const FeaturedGrid = () => {
             subtitle: "Graphic Series",
             image: "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1000&auto=format&fit=crop",
             link: "/shop?category=tees"
-        },
-        {
-            id: 4,
-            title: "Bottoms",
-            subtitle: "Tech & Cargo",
-            image: "https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop",
-            link: "/shop?category=bottoms"
-        },
-        {
-            id: 5,
-            title: "Outerwear",
-            subtitle: "Street Ready",
-            image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop",
-            link: "/shop?category=outerwear"
         }
     ];
 

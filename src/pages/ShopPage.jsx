@@ -9,19 +9,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 const ShopPage = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const categoryFilter = searchParams.get('category');
-    const [filteredProducts, setFilteredProducts] = useState(products);
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const [priceRange, setPriceRange] = useState(500000);
     const { t } = useLanguage();
 
-    // Filter Logic
-    useEffect(() => {
+    // Filter Logic - Category and Price (Optimized with useMemo)
+    const filteredProducts = React.useMemo(() => {
+        let filtered = products;
+
+        // Filter by category
         if (categoryFilter) {
-            setFilteredProducts(products.filter(p => p.category.slug === categoryFilter));
-        } else {
-            setFilteredProducts(products);
+            filtered = filtered.filter(p => p.category.slug === categoryFilter);
         }
-    }, [categoryFilter]);
+
+        // Filter by price range
+        filtered = filtered.filter(p => {
+            const productPrice = p.pricing?.priceRange?.start?.gross?.amount || 0;
+            return productPrice <= priceRange;
+        });
+
+        return filtered;
+    }, [categoryFilter, priceRange]);
 
     const categories = [
         { name: 'All', slug: null },
@@ -37,25 +45,63 @@ const ShopPage = () => {
             {/* Sidebar (Desktop) */}
             <aside className="shop-sidebar" style={{ width: '250px', flexShrink: 0 }}>
                 <div style={{ position: 'sticky', top: '120px' }}>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', marginBottom: '20px', textTransform: 'uppercase' }}>Filters</h3>
+                    {/* Main Title */}
+                    <h3 style={{
+                        fontFamily: 'var(--font-main)',
+                        fontSize: '0.75rem',
+                        marginBottom: '50px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.25em',
+                        fontWeight: '400',
+                        color: '#666'
+                    }}>REFINE</h3>
 
-                    <div style={{ marginBottom: '30px' }}>
-                        <h4 style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#888', marginBottom: '15px' }}>Category</h4>
+                    {/* Category Filter */}
+                    <div style={{ marginBottom: '60px' }}>
+                        <h4 style={{
+                            fontSize: '0.7rem',
+                            textTransform: 'uppercase',
+                            color: '#666',
+                            marginBottom: '25px',
+                            letterSpacing: '0.15em',
+                            fontWeight: '400',
+                            fontFamily: 'var(--font-main)'
+                        }}>Colección</h4>
+
                         <ul style={{ listStyle: 'none', padding: 0 }}>
                             {categories.map(cat => (
-                                <li key={cat.name} style={{ marginBottom: '10px' }}>
+                                <li key={cat.name} style={{ marginBottom: '16px' }}>
                                     <button
                                         onClick={() => setSearchParams(cat.slug ? { category: cat.slug } : {})}
                                         style={{
                                             background: 'none',
                                             border: 'none',
-                                            color: categoryFilter === cat.slug ? 'var(--color-accent)' : 'var(--color-text)',
+                                            color: categoryFilter === cat.slug ? '#fff' : '#9ca3af',
                                             cursor: 'pointer',
-                                            fontSize: '1rem',
+                                            fontSize: '0.95rem',
                                             fontFamily: 'var(--font-main)',
                                             textAlign: 'left',
-                                            padding: 0,
-                                            transition: 'color 0.2s'
+                                            padding: '8px 0 8px 12px',
+                                            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                                            fontWeight: categoryFilter === cat.slug ? '500' : '400',
+                                            letterSpacing: '0.02em',
+                                            width: '100%',
+                                            position: 'relative',
+                                            borderLeft: categoryFilter === cat.slug ? '2px solid var(--color-accent)' : '2px solid transparent'
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            if (categoryFilter !== cat.slug) {
+                                                e.currentTarget.style.color = '#fff';
+                                                e.currentTarget.style.borderLeft = '2px solid var(--color-accent)';
+                                                e.currentTarget.style.paddingLeft = '16px';
+                                            }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            if (categoryFilter !== cat.slug) {
+                                                e.currentTarget.style.color = '#9ca3af';
+                                                e.currentTarget.style.borderLeft = '2px solid transparent';
+                                                e.currentTarget.style.paddingLeft = '12px';
+                                            }
                                         }}
                                     >
                                         {cat.name}
@@ -65,16 +111,20 @@ const ShopPage = () => {
                         </ul>
                     </div>
 
-                    <div style={{ marginBottom: '30px' }}>
+                    {/* Price Range Filter */}
+                    <div style={{ marginBottom: '60px' }}>
                         <h4 style={{
-                            fontSize: '0.9rem',
+                            fontSize: '0.7rem',
                             textTransform: 'uppercase',
-                            color: '#888',
-                            marginBottom: '20px',
-                            letterSpacing: '0.1em'
-                        }}>Price Range</h4>
+                            color: '#666',
+                            marginBottom: '25px',
+                            letterSpacing: '0.15em',
+                            fontWeight: '400',
+                            fontFamily: 'var(--font-main)'
+                        }}>Precio</h4>
 
-                        <div style={{ marginBottom: '15px' }}>
+                        {/* Slider */}
+                        <div style={{ marginBottom: '20px' }}>
                             <input
                                 type="range"
                                 min="0"
@@ -84,41 +134,41 @@ const ShopPage = () => {
                                 onChange={(e) => setPriceRange(Number(e.target.value))}
                                 style={{
                                     width: '100%',
-                                    height: '2px',
-                                    background: 'linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) 100%, #333 100%)',
+                                    height: '1px',
+                                    background: `linear-gradient(to right, var(--color-accent) 0%, var(--color-accent) ${(priceRange / 500000) * 100}%, #333 ${(priceRange / 500000) * 100}%, #333 100%)`,
                                     outline: 'none',
                                     WebkitAppearance: 'none',
-                                    borderRadius: '5px',
-                                    cursor: 'pointer'
+                                    cursor: 'pointer',
+                                    marginBottom: '15px'
                                 }}
                                 className="price-slider"
                             />
                         </div>
 
+                        {/* Min/Max Labels */}
                         <div style={{
                             display: 'flex',
                             justifyContent: 'space-between',
                             alignItems: 'center',
-                            fontSize: '0.85rem',
-                            fontWeight: '600',
+                            fontSize: '0.7rem',
                             fontFamily: 'var(--font-main)',
-                            marginBottom: '10px'
+                            marginBottom: '15px',
+                            color: '#666',
+                            letterSpacing: '0.05em'
                         }}>
-                            <span style={{ color: '#888' }}>$0</span>
-                            <span style={{ color: '#888' }}>$500.000</span>
+                            <span>$0</span>
+                            <span>$500.000</span>
                         </div>
 
+                        {/* Current Price Value - Minimal Display */}
                         <div style={{
-                            textAlign: 'center',
-                            fontSize: '1.1rem',
+                            fontSize: '0.9rem',
                             color: 'var(--color-accent)',
-                            fontWeight: '700',
+                            fontWeight: '500',
                             fontFamily: 'var(--font-main)',
-                            padding: '10px',
-                            background: 'rgba(90, 14, 27, 0.1)',
-                            borderRadius: '4px',
-                            border: '1px solid var(--color-accent)',
-                            animation: 'pulse-glow 2s ease-in-out infinite'
+                            paddingBottom: '8px',
+                            borderBottom: '1px solid rgba(90, 14, 27, 0.3)',
+                            letterSpacing: '0.02em'
                         }}>
                             ${priceRange.toLocaleString('es-CO')}
                         </div>
@@ -179,36 +229,76 @@ const ShopPage = () => {
                             height: '100vh',
                             background: '#050505',
                             zIndex: 2000,
-                            padding: '20px',
+                            padding: '30px 20px',
                             borderRight: '1px solid #333'
                         }}
                     >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '40px' }}>
-                            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem' }}>FILTERS</h3>
-                            <X onClick={() => setMobileFiltersOpen(false)} />
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '50px' }}>
+                            <h3 style={{
+                                fontFamily: 'var(--font-main)',
+                                fontSize: '0.75rem',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.25em',
+                                fontWeight: '400',
+                                color: '#666'
+                            }}>REFINE</h3>
+                            <button
+                                onClick={() => setMobileFiltersOpen(false)}
+                                style={{
+                                    background: 'none',
+                                    border: 'none',
+                                    color: '#666',
+                                    cursor: 'pointer',
+                                    padding: '8px'
+                                }}
+                            >
+                                <X size={20} />
+                            </button>
                         </div>
-                        {/* Mobile Filter Content (Duplicate logic for now) */}
-                        <ul style={{ listStyle: 'none', padding: 0 }}>
-                            {categories.map(cat => (
-                                <li key={cat.name} style={{ marginBottom: '15px' }}>
-                                    <button
-                                        onClick={() => {
-                                            setSearchParams(cat.slug ? { category: cat.slug } : {});
-                                            setMobileFiltersOpen(false);
-                                        }}
-                                        style={{
-                                            background: 'none',
-                                            border: 'none',
-                                            color: categoryFilter === cat.slug ? 'var(--color-accent)' : 'var(--color-text)',
-                                            fontSize: '1.2rem',
-                                            textTransform: 'uppercase'
-                                        }}
-                                    >
-                                        {cat.name}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
+
+                        {/* Mobile Category List */}
+                        <div style={{ marginBottom: '50px' }}>
+                            <h4 style={{
+                                fontSize: '0.7rem',
+                                textTransform: 'uppercase',
+                                color: '#666',
+                                marginBottom: '25px',
+                                letterSpacing: '0.15em',
+                                fontWeight: '400',
+                                fontFamily: 'var(--font-main)'
+                            }}>Colección</h4>
+
+                            <ul style={{ listStyle: 'none', padding: 0 }}>
+                                {categories.map(cat => (
+                                    <li key={cat.name} style={{ marginBottom: '16px' }}>
+                                        <button
+                                            onClick={() => {
+                                                setSearchParams(cat.slug ? { category: cat.slug } : {});
+                                                setMobileFiltersOpen(false);
+                                            }}
+                                            style={{
+                                                background: 'none',
+                                                border: 'none',
+                                                color: categoryFilter === cat.slug ? '#fff' : '#9ca3af',
+                                                fontSize: '1rem',
+                                                textTransform: 'uppercase',
+                                                fontFamily: 'var(--font-main)',
+                                                fontWeight: categoryFilter === cat.slug ? '500' : '400',
+                                                letterSpacing: '0.02em',
+                                                cursor: 'pointer',
+                                                padding: '8px 0 8px 12px',
+                                                width: '100%',
+                                                textAlign: 'left',
+                                                borderLeft: categoryFilter === cat.slug ? '2px solid var(--color-accent)' : '2px solid transparent',
+                                                transition: 'all 0.3s ease'
+                                            }}
+                                        >
+                                            {cat.name}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

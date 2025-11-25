@@ -163,7 +163,7 @@ const CollectionsPage = () => {
                 />
 
                 <LookbookItem
-                    image="https://images.unsplash.com/photo-1552160753-f13c536d56fc?q=80&w=1000&auto=format&fit=crop"
+                    image="/lookbook_model_3.png"
                     title="Caos Organizado"
                     description="Diseño funcional para el desorden moderno."
                     align="left"

@@ -103,5 +103,39 @@ export const products = [
             { id: "tsw_xl", name: "XL" }
         ],
         description: "Camiseta negra con figura esquelética guerrera en la espalda. Estilo black metal con detalles ornamentados."
+    },
+    {
+        id: "tshirt-gothic-skull",
+        name: 'T-Shirt Gothic Skull',
+        category: { name: 'T-Shirts', slug: 'tees' },
+        pricing: { priceRange: { start: { gross: { amount: 90000, currency: 'COP' } } } },
+        thumbnail: { url: '/images/products/tshirt-gothic-skull.png' },
+        media: [
+            { url: '/images/products/tshirt-gothic-skull.png' }
+        ],
+        variants: [
+            { id: "tgs_s", name: "S" },
+            { id: "tgs_m", name: "M" },
+            { id: "tgs_l", name: "L" },
+            { id: "tgs_xl", name: "XL" }
+        ],
+        description: "Camiseta negra con calavera gótica ornamentada en la espalda. Diseño intrincado con elementos dark."
+    },
+    {
+        id: "tshirt-dark-angel",
+        name: 'T-Shirt Dark Angel',
+        category: { name: 'T-Shirts', slug: 'tees' },
+        pricing: { priceRange: { start: { gross: { amount: 90000, currency: 'COP' } } } },
+        thumbnail: { url: '/images/products/tshirt-dark-angel.png' },
+        media: [
+            { url: '/images/products/tshirt-dark-angel.png' }
+        ],
+        variants: [
+            { id: "tda_s", name: "S" },
+            { id: "tda_m", name: "M" },
+            { id: "tda_l", name: "L" },
+            { id: "tda_xl", name: "XL" }
+        ],
+        description: "Camiseta negra con ángel oscuro y alas desplegadas en la espalda. Gráfico detallado estilo gótico."
     }
 ];
