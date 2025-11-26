@@ -28,15 +28,17 @@ const FeaturedGrid = () => {
     ];
 
     return (
-        <section style={{ padding: '100px 0', background: 'var(--color-bg)' }}>
+        <section style={{ padding: '60px 0', background: 'var(--color-bg)' }}>
             <div className="container">
                 <div style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'flex-end',
-                    marginBottom: '60px',
+                    marginBottom: '80px',
                     borderBottom: '1px solid #333',
-                    paddingBottom: '20px'
+                    paddingBottom: '20px',
+                    flexWrap: 'wrap',
+                    gap: '20px'
                 }}>
                     <h2 className="metal-title" style={{
                         fontSize: 'clamp(3rem, 6vw, 5rem)',
@@ -71,12 +73,15 @@ const FeaturedGrid = () => {
                                 <img
                                     src={item.image}
                                     alt={item.title}
+                                    loading="lazy"
+                                    width="600"
+                                    height="600"
                                     style={{
                                         width: '100%',
                                         height: '100%',
                                         objectFit: 'cover',
                                         filter: 'grayscale(100%) contrast(1.2)',
-                                        transition: 'all 0.5s ease'
+                                        transition: 'transform 0.5s ease, filter 0.5s ease'
                                     }}
                                     onMouseOver={e => {
                                         e.target.style.filter = 'grayscale(0%) contrast(1.1)';

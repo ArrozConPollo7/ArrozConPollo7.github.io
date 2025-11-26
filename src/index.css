@@ -19,6 +19,10 @@
     --color-border: #333333;
     --color-gray: #444444;
 
+    /* Neon Colors for Futuristic Elements */
+    --color-neon-violet: #9D4EDD;
+    --color-neon-cyan: #00D9FF;
+
     /* Typography - Libre Caslon Display for Titles */
     --font-display: 'Libre Caslon Display', Georgia, serif;
     /* Elegant Display - Libre Caslon */
@@ -123,6 +127,39 @@ a {
 .btn-accent:hover {
     background: var(--color-accent);
     box-shadow: 0 0 30px var(--color-accent-glow);
+}
+
+.btn-gradient {
+    border: none;
+    color: #fff;
+    background: linear-gradient(135deg, #7B2CBF 0%, #5A0E1B 100%);
+    box-shadow: 0 4px 15px rgba(123, 44, 191, 0.3);
+}
+
+.btn-gradient:hover {
+    background: linear-gradient(135deg, #9D4EDD 0%, #7B2CBF 100%);
+    box-shadow: 0 6px 25px rgba(123, 44, 191, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Andromeda Luxury Button - Minimalist Outline */
+.btn-andromeda {
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    background: transparent;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: var(--font-main);
+    transition: all 0.3s ease-in-out;
+    border-radius: 0;
+    padding: 16px 48px;
+}
+
+.btn-andromeda:hover {
+    background: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
 }
 
 /* Scrollbar */

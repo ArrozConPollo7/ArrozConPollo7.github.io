@@ -86,6 +86,15 @@ const Footer = () => {
           padding-left: 5px;
           transition: all 0.3s ease;
         }
+        
+        @media (max-width: 768px) {
+          footer {
+            padding: 50px 20px 30px !important;
+          }
+          footer .container {
+            gap: 40px !important;
+          }
+        }
       `}</style>
         </footer>
     );

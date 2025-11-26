@@ -59,13 +59,17 @@ const ProductCard = ({ product }) => {
                         <img
                             src={image}
                             alt={product.name}
+                            loading="lazy"
+                            width="400"
+                            height="533"
                             style={{
                                 width: '100%',
                                 height: '100%',
                                 objectFit: 'cover',
-                                transition: 'transform 0.6s ease',
+                                transition: 'transform 0.6s ease, filter 0.6s ease',
                                 transform: hovered ? 'scale(1.05)' : 'scale(1)',
-                                filter: hovered ? 'grayscale(0%)' : 'grayscale(100%) contrast(1.2)'
+                                filter: hovered ? 'grayscale(0%)' : 'grayscale(100%) contrast(1.2)',
+                                willChange: hovered ? 'transform, filter' : 'auto'
                             }}
                         />
 

@@ -17,26 +17,27 @@ const Hero = () => {
             overflow: 'hidden',
             background: '#000'
         }}>
-            {/* Background Image - Dark Urban Placeholder */}
+            {/* Background Image - Custom Andromeda Streetwear */}
             <div style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
                 height: '100%',
-                opacity: 0.6,
-                background: 'url("https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=2000&auto=format&fit=crop") center/cover no-repeat',
-                filter: 'grayscale(100%) contrast(1.2)'
+                opacity: 0.5,
+                background: 'url("/hero_andromeda.png") center/cover no-repeat',
+                filter: 'grayscale(40%) contrast(1.1)',
+                backdropFilter: 'blur(2px)'
             }}></div>
 
-            {/* Gradient Overlay */}
+            {/* Gradient Overlay - Enhanced for readability */}
             <div style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
                 width: '100%',
                 height: '100%',
-                background: 'radial-gradient(circle at center, transparent 0%, #000 90%)'
+                background: 'radial-gradient(circle at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 60%, #000 100%)'
             }}></div>
 
             <div className="container" style={{
@@ -102,8 +103,8 @@ const Hero = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1 }}
                 >
-                    <Link to="/shop" className="btn btn-accent">
-                        NEW DROP
+                    <Link to="/shop" className="btn btn-andromeda">
+                        VER COLECCIÓN
                     </Link>
                 </motion.div>
             </div>

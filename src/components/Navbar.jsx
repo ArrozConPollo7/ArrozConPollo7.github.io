@@ -2,15 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Search, Menu, X, ChevronDown, Globe } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useLanguage } from '../context/LanguageContext';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { products } from '../data/products';
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [shopDropdownOpen, setShopDropdownOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     const { cartCount } = useCart();
     const { language, toggleLanguage, t } = useLanguage();
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -20,12 +25,38 @@ const Navbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Handle ESC key to close search modal
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && searchOpen) {
+                setSearchOpen(false);
+                setSearchQuery('');
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [searchOpen]);
+
+    // Filter products based on search query
+    const filteredProducts = searchQuery.trim()
+        ? products.filter(product =>
+            product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            product.category.name.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        : [];
+
+    const handleProductClick = (productId) => {
+        setSearchOpen(false);
+        setSearchQuery('');
+        navigate(`/product/${productId}`);
+    };
+
     const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
 
     return (
         <nav style={{
             position: 'fixed',
-            top: 0,
+            top: isMobile ? '10px' : '20px',
             left: 0,
             width: '100%',
             padding: isMobile ? '15px 20px' : '20px 40px',
@@ -117,8 +148,8 @@ const Navbar = () => {
 
             {/* Icons */}
             <div style={{ display: 'flex', gap: isMobile ? '15px' : '20px', alignItems: 'center' }}>
-                {/* Language Toggle */}
-                {!isMobile && <Search size={24} style={{ cursor: 'pointer' }} />}
+                {/* Search Icon */}
+                {!isMobile && <Search size={24} style={{ cursor: 'pointer' }} onClick={() => setSearchOpen(true)} />}
 
                 <Link to="/cart" style={{ position: 'relative', cursor: 'pointer', color: 'inherit', display: 'flex', alignItems: 'center' }}>
                     <ShoppingBag size={24} />
@@ -146,6 +177,173 @@ const Navbar = () => {
                     {menuOpen ? <X size={24} /> : <Menu size={24} />}
                 </div>
             </div>
+
+            {/* Search Modal */}
+            <AnimatePresence>
+                {searchOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100vh',
+                            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+                            backdropFilter: 'blur(10px)',
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            justifyContent: 'center',
+                            zIndex: 2000,
+                            padding: '100px 20px 20px',
+                            overflowY: 'auto'
+                        }}
+                        onClick={() => {
+                            setSearchOpen(false);
+                            setSearchQuery('');
+                        }}
+                    >
+                        <div
+                            style={{ maxWidth: '800px', width: '100%' }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Search Input */}
+                            <div style={{
+                                position: 'relative',
+                                marginBottom: '40px'
+                            }}>
+                                <input
+                                    type="text"
+                                    placeholder="Buscar productos..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    autoFocus
+                                    style={{
+                                        width: '100%',
+                                        padding: '20px 60px 20px 20px',
+                                        fontSize: '1.2rem',
+                                        background: 'rgba(255, 255, 255, 0.05)',
+                                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                                        borderRadius: '12px',
+                                        color: 'white',
+                                        outline: 'none',
+                                        fontFamily: 'var(--font-main)'
+                                    }}
+                                />
+                                <Search
+                                    size={24}
+                                    style={{
+                                        position: 'absolute',
+                                        right: '20px',
+                                        top: '50%',
+                                        transform: 'translateY(-50%)',
+                                        color: '#888'
+                                    }}
+                                />
+                            </div>
+
+                            {/* Search Results */}
+                            {searchQuery.trim() && (
+                                <div>
+                                    <p style={{
+                                        color: '#888',
+                                        marginBottom: '20px',
+                                        fontSize: '0.9rem'
+                                    }}>
+                                        {filteredProducts.length} {filteredProducts.length === 1 ? 'resultado' : 'resultados'}
+                                    </p>
+
+                                    <div style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                                        gap: '20px'
+                                    }}>
+                                        {filteredProducts.map((product) => (
+                                            <motion.div
+                                                key={product.id}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                style={{
+                                                    background: 'rgba(255, 255, 255, 0.03)',
+                                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                    borderRadius: '12px',
+                                                    overflow: 'hidden',
+                                                    cursor: 'pointer',
+                                                    transition: 'all 0.3s ease'
+                                                }}
+                                                whileHover={{
+                                                    scale: 1.02,
+                                                    borderColor: 'rgba(123, 44, 191, 0.5)'
+                                                }}
+                                                onClick={() => handleProductClick(product.id)}
+                                            >
+                                                <img
+                                                    src={product.thumbnail.url}
+                                                    alt={product.name}
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '200px',
+                                                        objectFit: 'cover'
+                                                    }}
+                                                />
+                                                <div style={{ padding: '15px' }}>
+                                                    <h3 style={{
+                                                        fontSize: '1rem',
+                                                        marginBottom: '8px',
+                                                        color: 'white',
+                                                        fontFamily: 'var(--font-main)'
+                                                    }}>
+                                                        {product.name}
+                                                    </h3>
+                                                    <p style={{
+                                                        fontSize: '0.85rem',
+                                                        color: '#888',
+                                                        marginBottom: '8px'
+                                                    }}>
+                                                        {product.category.name}
+                                                    </p>
+                                                    <p style={{
+                                                        fontSize: '1.1rem',
+                                                        color: 'var(--color-accent)',
+                                                        fontWeight: 'bold'
+                                                    }}>
+                                                        ${product.pricing.priceRange.start.gross.amount.toLocaleString()} {product.pricing.priceRange.start.gross.currency}
+                                                    </p>
+                                                </div>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+
+                                    {filteredProducts.length === 0 && (
+                                        <div style={{
+                                            textAlign: 'center',
+                                            padding: '60px 20px',
+                                            color: '#666'
+                                        }}>
+                                            <p style={{ fontSize: '1.2rem', marginBottom: '10px' }}>No se encontraron productos</p>
+                                            <p style={{ fontSize: '0.9rem' }}>Intenta con otro término de búsqueda</p>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {!searchQuery.trim() && (
+                                <div style={{
+                                    textAlign: 'center',
+                                    padding: '60px 20px',
+                                    color: '#666'
+                                }}>
+                                    <Search size={48} style={{ marginBottom: '20px', opacity: 0.3 }} />
+                                    <p style={{ fontSize: '1.1rem' }}>Escribe para buscar productos</p>
+                                </div>
+                            )}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Mobile Menu Overlay */}
             <AnimatePresence>

@@ -39,7 +39,7 @@
     justify-content: center;
     cursor: pointer;
     color: white;
-    transition: all 0.3s ease;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .size-selector-close:hover {
@@ -84,7 +84,9 @@
     font-weight: 700;
     color: white;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-transform: uppercase;
     letter-spacing: 1px;
     position: relative;
@@ -96,12 +98,12 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 0;
-    height: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
     background: var(--color-accent);
-    transform: translate(-50%, -50%);
-    transition: width 0.4s ease, height 0.4s ease;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.4s ease;
     z-index: -1;
 }
 
@@ -113,8 +115,7 @@
 }
 
 .size-selector-button:hover::before {
-    width: 200%;
-    height: 200%;
+    transform: translate(-50%, -50%) scale(2);
 }
 
 .size-selector-button:active {

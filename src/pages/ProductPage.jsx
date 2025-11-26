@@ -41,6 +41,9 @@ const ProductPage = () => {
                             key={index}
                             src={img.url}
                             alt={`${product.name} view ${index + 1}`}
+                            loading={index === 0 ? "eager" : "lazy"}
+                            width="800"
+                            height="1067"
                             style={{ width: '100%', borderRadius: '4px' }}
                         />
                     ))}

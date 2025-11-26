@@ -28,6 +28,9 @@ const LookbookItem = ({ image, title, description, align, delay }) => (
                 <img
                     src={image}
                     alt={title}
+                    loading="lazy"
+                    width="600"
+                    height="600"
                     style={{
                         width: '100%',
                         height: '100%',
